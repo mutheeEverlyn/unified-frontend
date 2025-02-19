@@ -142,7 +142,7 @@ const App:React.FC=()=> {
        {
         path: 'purchase',
         element: <Purchase/>,
-       }
+       },
       ],
     },
     {
