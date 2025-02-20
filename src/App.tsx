@@ -1,5 +1,5 @@
 import React from 'react';
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+// import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import AboutUs from './components/AboutUs';
@@ -163,14 +163,9 @@ const App:React.FC=()=> {
     },
   ]);
   return(
-      <header>
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-    </header>
+    <div>
+    <RouterProvider router={router}/>
+    </div>
     );
 };
 
