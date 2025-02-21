@@ -89,43 +89,43 @@ const AdminDashboard = () => {
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="location" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
+              <NavLink to="/adminDashboard/location" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
                 <MapPin className="text-white mr-2" />
                 Locations
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="customer-reviews" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
+              <NavLink to="/adminDashboard/customer-reviews" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
                 <TicketCheck className="text-white mr-2" />
                 reviews
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="purchase-house" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
+              <NavLink to="/adminDashboard/purchase-house" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
                 <House className="text-white mr-2" />
                 house list
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="houses" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
+              <NavLink to="/adminDashboard/houses" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
                 <House className="text-white mr-2" />
                 manage houses
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="purchase-land" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
+              <NavLink to="/adminDashboard/purchase-land" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
                 <LandPlot className="text-white mr-2" />
                 land list
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="land" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
+              <NavLink to="/adminDashboard/land" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
                 <LandPlot className="text-white mr-2" />
                 manage land
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="payments-info" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
+              <NavLink to="/adminDashboard/payments-info" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
                 <CircleDollarSign className="text-white mr-2" />
                 Payments
               </NavLink>
