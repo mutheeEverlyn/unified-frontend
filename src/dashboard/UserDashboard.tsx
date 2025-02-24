@@ -73,7 +73,7 @@ const UserDashboard: React.FC = () => {
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="purchase-house" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
+              <NavLink to="/dashboard/purchase-house" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
                 <House className="text-white mr-2" />
                 purchase a house
               </NavLink>
