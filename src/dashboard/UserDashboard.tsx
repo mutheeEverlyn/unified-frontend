@@ -103,7 +103,7 @@ const UserDashboard: React.FC = () => {
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="profile" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
+              <NavLink to="/dashboard/profile" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
                 <FaUserCircle size={30} className="text-white mr-2" />
                 My Profile
               </NavLink>
