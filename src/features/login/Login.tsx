@@ -54,8 +54,8 @@ const Login: React.FC = () => {
         },
       }} />
       <div className="m-auto flex flex-col container min-h-screen">
-        <h1 className="font-bold text-3xl m-auto">Login to ALLNONE ASSETS</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 my-10 mx-auto w-2/3 border-blue-400 rounded-md border-2 p-10">
+        <h1 className="font-bold text-3xl ">ALLNONE ASSETS</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 my-10  w-96 border-amber-300 rounded-md border-2 p-10 ">
           <label htmlFor="email">Enter Your Email</label>
           {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
           <input
@@ -86,16 +86,16 @@ const Login: React.FC = () => {
             className="border-2 border-black rounded-md p-2"
           />
 
-          <button type="submit" className="rounded-md bg-blue-400 p-2" disabled={isLoading}>
+          <button type="submit" className="rounded-md bg-amber-300  hover:bg-gray-400 p-2 *:transition duration-500" disabled={isLoading}>
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
 
           {error && <p className="text-red-600">Failed to login: {error.message}</p>}
 
-          <button type="button" className="rounded-md bg-blue-400 p-2">
-            <Link to='/'>Go Back</Link>
+          <button type="button" className="rounded-md bg-amber-300  hover:bg-gray-400 p-2 *:transition duration-500">
+            <Link to='/'>Go Home</Link>
           </button>
-          <p>not registered? <Link to='/register' className='text-blue-400'>Register</Link></p>
+          <p>not registered? <Link to='/register' className='text-amber-300  hover:text-gray-400 *:transition duration-500'>Register</Link></p>
         </form>
       </div>
       <Footer />
