@@ -15,27 +15,27 @@ const Footer = () => {
           <h3 className="font-semibold text-sm mb-2">Quick Links</h3>
           <ul className="text-xs space-y-1">
             <li>
-              <Link to="/about-us" className="hover:text-amber-300">
+              <Link to="/about-us" className="hover:text-black *:transition duration-500">
                 About Us
               </Link>
             </li>
             <li>
-              <Link to="/contact-us" className="hover:text-amber-300">
+              <Link to="/contact-us" className="hover:text-black *:transition duration-500">
                 Contact
               </Link>
             </li>
             <li>
-              <Link to="/services" className="hover:text-amber-300">
+              <Link to="/services" className="hover:text-black *:transition duration-500">
                 Services
               </Link>
             </li>
             <li>
-              <Link to="/login" className="hover:text-amber-300">
+              <Link to="/login" className="hover:text-black *:transition duration-500">
                 Login
               </Link>
             </li>
             <li>
-              <Link to="/register" className="hover:text-amber-300">
+              <Link to="/register" className="hover:text-black *:transition duration-500">
                 Register
               </Link>
             </li>
@@ -44,25 +44,25 @@ const Footer = () => {
 
         {/* Social Media Section */}
         <div className="flex flex-col items-center md:items-start">
-          <h3 className="font-semibold text-sm mb-2">Follow Us</h3>
+          <h3 className="font-semibold text-sm mb-2">Follow Us On</h3>
           <ul className="text-xs space-y-1">
             <li>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-black *:transition duration-500">
                 Facebook
               </a>
             </li>
             <li>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-black *:transition duration-500">
                 Instagram
               </a>
             </li>
             <li>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-black *:transition duration-500">
                 Twitter
               </a>
             </li>
             <li>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-black *:transition duration-500">
                 LinkedIn
               </a>
             </li>
