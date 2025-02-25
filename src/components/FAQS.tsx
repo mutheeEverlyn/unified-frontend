@@ -44,7 +44,7 @@ const FAQS = () => {
               <h2 className="text-lg font-semibold">{faq.question}</h2>
               <button
                 onClick={() => toggleAnswer(index)}
-                className="text-sm font-medium px-4 py-2 bg-gray-400 text-white rounded hover:bg-amber-300 focus:outline-none"
+                className="text-sm font-medium px-4 py-2 bg-gray-400 text-white rounded hover:bg-amber-300 focus:outline-none *:transition duration-500"
               >
                 {visibleAnswers.includes(index) ? "Hide Answer" : "Show Answer"}
               </button>
