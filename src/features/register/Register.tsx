@@ -45,8 +45,8 @@ const Register: React.FC=() => {
             }}
             />
       <div className="m-auto flex flex-col container min-h-screen">
-        <h1 className="font-bold text-3xl m-auto">Register with ALLNONE ASSETS to get started</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 mx-auto w-2/3 my-10 border-blue-400 rounded-md border-2 p-10">
+        <h1 className="font-bold text-3xl ">ALLNONE ASSETS</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5  w-96 my-10 border-amber-300 rounded-md border-2 p-10">
           <label htmlFor="full_name">Enter Your full name</label>
           {errors.full_name && <p className='text-red-600'>{errors.full_name.message}</p>}
           <input type="text" 
@@ -100,12 +100,12 @@ const Register: React.FC=() => {
           })}
           placeholder="user"
           className="border-2 border-black rounded-md p-2"/> */}
-          <button type="submit" className="rounded-md bg-blue-400 p-2" disabled={isLoading}> {isLoading ? 'registering...' : 'register'}</button>
+          <button type="submit" className="rounded-md bg-amber-300 p-2  hover:bg-gray-400 *:transition duration-500" disabled={isLoading}> {isLoading ? 'registering...' : 'register'}</button>
           {error && <p className="text-red-600">Failed to register: {error.message}</p>}
-          <button type="submit" className="rounded-md bg-blue-400 p-2">
-            <Link to='/'>Go Back</Link>
+          <button type="submit" className="rounded-md bg-amber-300 hover:bg-gray-400 p-2 *:transition duration-500">
+            <Link to='/'>Go Home</Link>
           </button>
-          <p>Already registered? <Link to='/login' className="text-blue-400">LOGIN</Link></p>
+          <p>Already registered? <Link to='/login' className="text-amber-300  hover:text-gray-400 *:transition duration-500">LOGIN</Link></p>
           
         </form>
       </div>
