@@ -63,7 +63,7 @@ const FeaturedProperties = () => {
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
             {properties.map((data) => (
-              <div className="space-y-3 border-2 border-gray-300 hover:border-blue-400 p-3 rounded-xl relative group" >
+              <div className="space-y-3 border-2 border-gray-400 hover:border-amber-300 p-3 rounded-xl relative group" >
                 <div className="w-full h-[120px]">
                   <img
                     src={data.image}
@@ -83,7 +83,7 @@ const FeaturedProperties = () => {
           </div>
         </div>
         <div className=" place-items-center mt-8 flex gap-4 items-center m-auto w-96">
-          <button  className="bg-blue-400 p-2  hover:bg-primary/80 transition duration-500  rounded-md">
+          <button  className="bg-gray-400 p-2  hover:bg-amber-300 *:transition duration-500  rounded-md">
            <Link to='/register'>Buy Yours Today</Link> 
           </button>
         </div>
