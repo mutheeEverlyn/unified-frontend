@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+.login{
+    background-image:url('./assets/Hero.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+}
