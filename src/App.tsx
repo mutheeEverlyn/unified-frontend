@@ -32,7 +32,7 @@ import Location from './features/location/Location';
 const App:React.FC=()=> {
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: '',
       element: <Home />,
       errorElement: <Error />,
     },
@@ -57,12 +57,12 @@ const App:React.FC=()=> {
       errorElement: <Error />,
     },
     {
-      path: 'adminDashboard/*',
+      path: 'adminDashboard/',
       element: <RouteProtection element={AdminDashboard} role="admin"/>,
       errorElement: <Error />,
       children: [
         {
-          path: 'adminDashboard',
+          path: '',
           element: <Admin />,
         },
         {
@@ -108,7 +108,7 @@ const App:React.FC=()=> {
       ],
     },
     {
-      path: 'userDashboard/*',
+      path: 'userDashboard/',
       element: <RouteProtection element={UserDashboard} role="user"/>,
       errorElement: <Error />,
       children: [
