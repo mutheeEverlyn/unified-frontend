@@ -28,32 +28,32 @@ const CustomerReviews: React.FC = () => {
           },
         }}
       />
-      <div className="overflow-x-auto  bg-gray-800 text-white rounded-lg p-4 min-h-screen">
+      <div className="overflow-x-auto  bg-amber-300 text-white rounded-lg p-4 min-h-screen">
         <h1 className='text-xl my-4'>customer Review Data</h1>
         <table className="table table-xs">
           <thead>
             <tr>
-            <th className='text-white'>user_id</th>
-              <th className='text-white'>review_id</th>
-              <th className='text-white'>rating</th>
-              <th className='text-white'>comment</th>
-              <th className='text-white'>created_at</th>
-              <th className='text-white'>updated_at</th>
-              <th className='text-white'>address</th>
-              <th className='text-white'>contact_phone</th>
-              <th className='text-white'>created_at</th>
-              <th className='text-white'>email</th>
-              <th className='text-white'>full_name</th>
-              <th className='text-white'>updated_at</th>
-              <th className='text-white'>Options</th>
+            <th className='text-white border border-white px-4 py-2'>user_id</th>
+              <th className='text-white border border-white px-4 py-2'>review_id</th>
+              <th className='text-white border border-white px-4 py-2'>rating</th>
+              <th className='text-white border border-white px-4 py-2'>comment</th>
+              <th className='text-white border border-white px-4 py-2'>created_at</th>
+              <th className='text-white border border-white px-4 py-2'>updated_at</th>
+              <th className='text-white border border-white px-4 py-2'>address</th>
+              <th className='text-white border border-white px-4 py-2'>contact_phone</th>
+              <th className='text-white border border-white px-4 py-2'>created_at</th>
+              <th className='text-white border border-white px-4 py-2'>email</th>
+              <th className='text-white border border-white px-4 py-2'>full_name</th>
+              <th className='text-white border border-white px-4 py-2'>updated_at</th>
+              <th className='text-white border border-white px-4 py-2'>Options</th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
-              <tr><td colSpan={6}>Loading...</td></tr>
+              <tr><td colSpan={12}>Loading...</td></tr>
             ) : (
               isError ? (
-                <tr><td colSpan={6}>Error: {error?.data?.message || 'An error occurred'}</td></tr>
+                <tr><td colSpan={12}>Error: {error?.data?.message || 'An error occurred'}</td></tr>
               ) : (
                 data && data.map((customerReview:TCustomerReview, index:number) => (
                   <tr key={index}>
@@ -70,8 +70,8 @@ const CustomerReviews: React.FC = () => {
                     <td>{customerReview.user.full_name}</td>
                     <td>{customerReview.user.updated_at}</td>
                     <td className='flex gap-2'>
-                      <button className='btn btn-sm btn-outline btn-info'>update</button>
-                      <button className='btn btn-sm btn-outline btn-warning' onClick={() => handleDelete(customerReview.review_id)}>Delete</button>
+                      <button className='bg-green-400 rounded p-0.5'>update</button>
+                      <button className='bg-red-700 rounded p-0.5' onClick={() => handleDelete(customerReview.review_id)}>Delete</button>
                     </td>
                   </tr>
                 ))
@@ -79,7 +79,7 @@ const CustomerReviews: React.FC = () => {
             )}
           </tbody>
           <tfoot>
-            <tr><td className='text-white' colSpan={6}>{data ? `${data.length} records` : '0 records'}</td></tr>
+            <tr><td className='text-white' colSpan={12}>{data ? `${data.length} records` : '0 records'}</td></tr>
           </tfoot>
         </table>
       </div>
