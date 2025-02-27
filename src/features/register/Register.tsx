@@ -44,19 +44,19 @@ const Register: React.FC=() => {
                 },
             }}
             />
-      <div className="m-auto flex flex-col container min-h-screen">
-        <h1 className="font-bold text-3xl ">ALLNONE ASSETS</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5  w-96 my-10 border-amber-300 rounded-md border-2 p-10">
-          <label htmlFor="full_name">Enter Your full name</label>
+      <div className="m-auto flex flex-col container min-h-screen login">
+        <h1 className="font-bold text-3xl mx-auto">ALLNONE ASSETS</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5  w-96 my-10 bg-white rounded-md  p-10 mx-auto shadow-gray-300 shadow-lg">
           {errors.full_name && <p className='text-red-600'>{errors.full_name.message}</p>}
+          <div className='w-full flex items-center relative p-2 rounded-xl gap-2 bg-gray-400'>
           <input type="text" 
             {...register("full_name", {
               required: 'full_name is required'
             })}
-          placeholder="John Doe" className="border-2 border-black rounded-md p-2" />
-          
-          <label htmlFor="email">Enter Your email</label>
+          placeholder="Full Name" className=" bg-transparent outline-none border-0" />
+          </div>
           {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
+          <div className='w-full flex items-center relative p-2 rounded-xl gap-2 bg-gray-400'>
           <input type="email" 
            {...register("email", {
             required: 'Email is required',
@@ -65,10 +65,10 @@ const Register: React.FC=() => {
               message: 'Invalid email address'
             }
           })}
-           placeholder="example@gmail.com" className="border-2 border-black rounded-md p-2" />
-          
-          <label htmlFor="password">Enter Your password</label>
+           placeholder="Email address" className=" bg-transparent outline-none border-0 " />
+        </div>
           {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
+          <div className='w-full flex items-center relative p-2 rounded-xl gap-2 bg-gray-400'>
           <input type="password" 
           {...register("password", {
             required: 'Password is required',
@@ -77,29 +77,26 @@ const Register: React.FC=() => {
               message: 'Password must be at least 8 characters'
             }
           })}
-           placeholder="**********" className="border-2 border-black rounded-md p-2" />
-          <label htmlFor="contact_phone">contact_phone</label>
+           placeholder="Password" className="bg-transparent outline-none border-0" />
+           </div>
           {errors.contact_phone && <p className='text-red-600'>{errors.contact_phone.message}</p>}
+          <div className='w-full flex items-center relative p-2 rounded-xl gap-2 bg-gray-400'>
           <input type="text" 
            {...register("contact_phone", {
             required: 'contact_phone is required'
           })}
-          className="border-2 border-black rounded-md p-2"/>
-          <label htmlFor="address">address</label>
+          placeholder="Contact Phone"
+          className="bg-transparent outline-none border-0 "/>
+          </div>
           {errors.address && <p className='text-red-600'>{errors.address.message}</p>}
+          <div className='w-full flex items-center relative p-2 rounded-xl gap-2 bg-gray-400'>
           <input type="text"
            {...register("address", {
             required: 'address is required'
           })}
-          className="border-2 border-black rounded-md p-2"/>
-          {/* <label htmlFor="role">role</label>
-          {errors.role && <p className='text-red-600'>{errors.role.message}</p>}
-          <input type="text" 
-           {...register("role", {
-            required: 'role is required'
-          })}
-          placeholder="user"
-          className="border-2 border-black rounded-md p-2"/> */}
+          placeholder="Address"
+          className="bg-transparent outline-none border-0"/>
+          </div>
           <button type="submit" className="rounded-md bg-amber-300 p-2  hover:bg-gray-400 *:transition duration-500" disabled={isLoading}> {isLoading ? 'registering...' : 'register'}</button>
           {error && <p className="text-red-600">Failed to register: {error.message}</p>}
           <button type="submit" className="rounded-md bg-amber-300 hover:bg-gray-400 p-2 *:transition duration-500">
