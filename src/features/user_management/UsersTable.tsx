@@ -114,7 +114,7 @@ const UsersTable: React.FC = () => {
           },
         }}
       />
-      <div className="overflow-x-auto bg-gray-800 text-white rounded-lg p-4 min-h-screen">
+      <div className="overflow-x-auto bg-amber-300 text-white rounded-lg p-4 min-h-screen">
         <form onSubmit={editUserId !== null ? handleUpdateUser : handleCreateUser}>
           <div className="mb-2">
             <label htmlFor="full_name" className="block">Full Name:</label>
@@ -124,7 +124,7 @@ const UsersTable: React.FC = () => {
               name="full_name"
               value={formData.full_name}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -136,7 +136,7 @@ const UsersTable: React.FC = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -148,7 +148,7 @@ const UsersTable: React.FC = () => {
               name="contact_phone"
               value={formData.contact_phone}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -160,7 +160,7 @@ const UsersTable: React.FC = () => {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -172,7 +172,7 @@ const UsersTable: React.FC = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -184,105 +184,105 @@ const UsersTable: React.FC = () => {
               name="role"
               value={formData.role}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
-          <button className='btn btn-sm btn-outline btn-success'>{editUserId !== null ? 'Update User' : 'Add User'}</button>
+          <button className='bg-gray-400 p-0.5 rounded-b-sm'>{editUserId !== null ? 'Update User' : 'Add User'}</button>
         </form>
         <h1 className='text-xl my-4 text-center'>Users Data</h1>
-        <table className="table table-xs">
+        <table className="table-auto border-collapse w-full bg-gray-400 text-white border border-white">
           <thead>
             <tr>
-              <th className='text-white'>User ID</th>
-              <th className='text-white'>Full Name</th>
-              <th className='text-white'>Email</th>
-              <th className='text-white'>Phone</th>
-              <th className='text-white'>Address</th>
-              <th className='text-white'>Role</th>
-              <th className='text-white'>Options</th>
+              <th className='text-white  border-white px-4 py-2'>User ID</th>
+              <th className='text-white  border-white px-4 py-2'>Full Name</th>
+              <th className='text-white  border-white px-4 py-2'>Email</th>
+              <th className='text-white  border-white px-4 py-2'>Phone</th>
+              <th className='text-white  border-white px-4 py-2'>Address</th>
+              <th className='text-white  border-white px-4 py-2'>Role</th>
+              <th className='text-white  border-white px-4 py-2'>Options</th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
-              <tr><td colSpan={6}>Loading...</td></tr>
+              <tr><td colSpan={7}>Loading...</td></tr>
             ) : (
               isError ? (
-                <tr><td colSpan={6}>Error: {error?.data?.message || 'An error occurred'}</td></tr>
+                <tr><td colSpan={7}>Error: {error?.data?.message || 'An error occurred'}</td></tr>
               ) : (
                 data && data.map((user: Tuser) => (
                   <tr key={user.user_id}>
-                    <th>{user.user_id}</th>
-                    <td>{editUserId === user.user_id ? (
+                    <th  className="border border-white px-4 py-2">{user.user_id}</th>
+                    <td  className="border border-white px-4 py-2">{editUserId === user.user_id ? (
                       <input
                         type="text"
                         value={formData.full_name}
                         name="full_name"
                         onChange={handleChange}
-                        className="w-full p-2 rounded bg-gray-700 text-white"
+                        className="w-full p-2 rounded bg-gray-400 text-white"
                         required
                       />
                     ) : (
                       user.full_name
                     )}</td>
-                    <td>{editUserId === user.user_id ? (
+                    <td  className="border border-white px-4 py-2">{editUserId === user.user_id ? (
                       <input
                         type="email"
                         value={formData.email}
                         name="email"
                         onChange={handleChange}
-                        className="w-full p-2 rounded bg-gray-700 text-white"
+                        className="w-full p-2 rounded bg-gray-400 text-white"
                         required
                       />
                     ) : (
                       user.email
                     )}</td>
-                    <td>{editUserId === user.user_id ? (
+                    <td  className="border border-white px-4 py-2">{editUserId === user.user_id ? (
                       <input
                         type="tel"
                         value={formData.contact_phone}
                         name="contact_phone"
                         onChange={handleChange}
-                        className="w-full p-2 rounded bg-gray-700 text-white"
+                        className="w-full p-2 rounded bg-gray-400 text-white"
                         required
                       />
                     ) : (
                       user.contact_phone
                     )}</td>
-                    <td>{editUserId === user.user_id ? (
+                    <td  className="border border-white px-4 py-2">{editUserId === user.user_id ? (
                       <input
                         type="text"
                         value={formData.address}
                         name="address"
                         onChange={handleChange}
-                        className="w-full p-2 rounded bg-gray-700 text-white"
+                        className="w-full p-2 rounded bg-gray-400 text-white"
                         required
                       />
                     ) : (
                       user.address
                     )}</td>
-                    <td>{editUserId === user.user_id ? (
+                    <td  className="border border-white px-4 py-2">{editUserId === user.user_id ? (
                       <input
                         type="text"
                         value={formData.role}
                         name="role"
                         onChange={handleChange}
-                        className="w-full p-2 rounded bg-gray-700 text-white"
+                        className="w-full p-2 rounded bg-gray-400 text-white"
                         required
                       />
                     ) : (
                       user.role
                     )}</td>
-                    <td className='space-x-2'>
+                    <td className='space-x-2 border border-white px-4 py-2'>
                       {editUserId === user.user_id ? (
                         <>
-                          <button className='btn btn-sm btn-outline btn-success' onClick={handleUpdateUser}>Save</button>
-                          <button className='btn btn-sm btn-outline btn-warning' onClick={() => setEditUserId(null)}>Cancel</button>
+                          <button className='bg-green-400 rounded-b-md p-0.5' onClick={handleUpdateUser}>Save</button>
+                          <button className='bg-red-600 rounded-b-md p-0.5' onClick={() => setEditUserId(null)}>Cancel</button>
                         </>
                       ) : (
-                        <button className='btn btn-sm btn-outline btn-info' onClick={() => handleEditUser(user)}>Edit</button>
+                        <button className='bg-green-400 rounded-b-md p-0.5' onClick={() => handleEditUser(user)}>Edit</button>
                       )}
-                      <button className='btn btn-sm btn-outline btn-warning' onClick={() => handleDelete(user.user_id)}>Delete</button>
+                      <button className='bg-red-600 rounded-b-md p-0.5' onClick={() => handleDelete(user.user_id)}>Delete</button>
                     </td>
                   </tr>
                 ))
