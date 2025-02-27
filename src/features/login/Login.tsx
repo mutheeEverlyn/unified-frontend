@@ -1,16 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useLoginUserMutation } from "./LoginApi"; 
 import { Toaster, toast } from 'sonner';
-
+import { MdAlternateEmail } from 'react-icons/md';
+import{FaFingerprint,FaRegEye,FaRegEyeSlash} from 'react-icons/fa';
 type FormData = {
   email: string;
   password: string;
 };
-
 const Login: React.FC = () => {
+  const [showPassword,setShowPassword]=useState<boolean>(false);
+  const togglePasswordVisibility=()=>setShowPassword(!showPassword);
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
   const navigate = useNavigate();
   const [loginUser, { isLoading, error }] = useLoginUserMutation();
@@ -53,11 +55,12 @@ const Login: React.FC = () => {
           info: 'bg-blue-400',
         },
       }} />
-      <div className="m-auto flex flex-col container min-h-screen">
-        <h1 className="font-bold text-3xl ">ALLNONE ASSETS</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 my-10  w-96 border-amber-300 rounded-md border-2 p-10 ">
-          <label htmlFor="email">Enter Your Email</label>
+      <div className="m-auto flex flex-col container min-h-screen  login">
+        <h1 className="font-bold text-3xl mx-auto mt-20 ">ALLNONE ASSETS</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-gray-300 shadow-lg  flex flex-col gap-5 my-10  w-96  rounded-md  p-10 mx-auto ">
           {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
+          <div className='w-full flex items-center relative p-2 rounded-xl gap-2 bg-gray-400'>
+          <MdAlternateEmail/>
           <input
             type="email"
             {...register("email", {
@@ -67,14 +70,15 @@ const Login: React.FC = () => {
                 message: 'Invalid email address'
               }
             })}
-            placeholder="example@gmail.com"
-            className="border-2 border-black rounded-md p-2"
+            placeholder="Email address"
+            className=" bg-transparent outline-none border-0"
           />
-
-          <label htmlFor="password">Enter Your Password</label>
+</div>
           {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
+          <div className='w-full flex items-center relative p-2 rounded-xl gap-2 bg-gray-400'>
+            <FaFingerprint/>
           <input
-            type="password"
+            type={showPassword ? "password": "text"}
             {...register("password", {
               required: 'Password is required',
               minLength: {
@@ -82,10 +86,11 @@ const Login: React.FC = () => {
                 message: 'Password must be at least 8 characters'
               }
             })}
-            placeholder="**********"
-            className="border-2 border-black rounded-md p-2"
-          />
-
+            placeholder="Password"
+            className="  bg-transparent outline-none border-0  w-full"
+            />
+          { showPassword ? (<FaRegEyeSlash className="absolute right-5 cursor-pointer" onClick={togglePasswordVisibility} />):(<FaRegEye className="absolute right-5 cursor-pointer" onClick={togglePasswordVisibility}/>)}
+          </div >
           <button type="submit" className="rounded-md bg-amber-300  hover:bg-gray-400 p-2 *:transition duration-500" disabled={isLoading}>
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
