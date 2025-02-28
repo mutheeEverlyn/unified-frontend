@@ -176,7 +176,7 @@ const Vehicles: React.FC = () => {
           },
         }}
       />
-      <div className="p-4">
+      <div className="overflow-x-auto  bg-amber-300 text-white rounded-lg p-4 min-h-screen">
         <h1 className="text-xl my-4">{editvehicleId ? 'Edit vehicle' : 'Add New vehicle'}</h1>
         <form onSubmit={editvehicleId ? handleUpdateVehicle : handlecreateVehicle} className="mb-4">
           <div className="mb-2">
@@ -185,7 +185,7 @@ const Vehicles: React.FC = () => {
               id="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             >
               <option value="">Select status</option>
@@ -200,7 +200,7 @@ const Vehicles: React.FC = () => {
               type="text"
               value={make}
               onChange={(e) => setmake(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -211,7 +211,7 @@ const Vehicles: React.FC = () => {
               type="text"
               value={model}
               onChange={(e) => setModel(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -222,7 +222,7 @@ const Vehicles: React.FC = () => {
               type="number"
               value={year}
               onChange={(e) => setYear(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -233,7 +233,7 @@ const Vehicles: React.FC = () => {
               type="text"
               value={fuel_type}
               onChange={(e) => setFuel_type(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -244,7 +244,7 @@ const Vehicles: React.FC = () => {
               type="text"
               value={engine_capacity}
               onChange={(e) => setEngine_capacity(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -255,7 +255,7 @@ const Vehicles: React.FC = () => {
               type="text"
               value={transmission}
               onChange={(e) => setTransmission(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -266,7 +266,7 @@ const Vehicles: React.FC = () => {
               type="number"
               value={seating_capacity}
               onChange={(e) => setSeating_capacity(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -277,7 +277,7 @@ const Vehicles: React.FC = () => {
               type="text"
               value={color}
               onChange={(e) => setColor(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -289,7 +289,7 @@ const Vehicles: React.FC = () => {
               step="0.01"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -300,7 +300,7 @@ const Vehicles: React.FC = () => {
               type="text"
               value={history}
               onChange={(e) => setHistory(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -311,7 +311,7 @@ const Vehicles: React.FC = () => {
               type="text"
               value={interior_image}
               onChange={(e) => setInterior_image(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
             />
           </div>
           <div className="mb-2">
@@ -321,12 +321,12 @@ const Vehicles: React.FC = () => {
               type="text"
               value={exterior_image}
               onChange={(e) => setExterior_image(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
             />
           </div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-gray-400 hover:bg-black-300 text-white font-bold py-2 px-4 rounded"
           >
             {editvehicleId ? 'Update vehicle' : 'Add vehicle'}
           </button>
@@ -335,35 +335,35 @@ const Vehicles: React.FC = () => {
         {isLoading && <p>Loading vehicles...</p>}
         {isError && <p>Error loading vehicles.</p>}
         
-        <table className="w-full bg-gray-800 text-white border border-gray-700">
+        <table className="table-auto border-collapse  w-full bg-gray-400 text-white border border-white">
           <thead>
             <tr>
-              <th className="p-2 border-b">ID</th>
-              <th className="p-2 border-b">make</th>
-              <th className="p-2 border-b">Model</th>
-              <th className="p-2 border-b">Year</th>
-              <th className="p-2 border-b">status</th>
-              <th className="p-2 border-b">Actions</th>
+              <th className='text-white border border-white px-4 py-2'>ID</th>
+              <th className='text-white border border-white px-4 py-2'>make</th>
+              <th className='text-white border border-white px-4 py-2'>Model</th>
+              <th className='text-white border border-white px-4 py-2'>Year</th>
+              <th className='text-white border border-white px-4 py-2'>status</th>
+              <th className='text-white border border-white px-4 py-2'>Actions</th>
             </tr>
           </thead>
           <tbody>
             {vehicles && vehicles.map((vehicle: TVehicle) => (
               <tr key={vehicle.vehicle_id}>
-                <td className="p-2 border-b">{vehicle.vehicle_id}</td>
-                <td className="p-2 border-b">{vehicle.make}</td>
-                <td className="p-2 border-b">{vehicle.model}</td>
-                <td className="p-2 border-b">{vehicle.year}</td>
-                <td className="p-2 border-b">{vehicle.status}</td>
-                <td className="p-2 border-b">
+                <td className="border border-white px-4 py-2">{vehicle.vehicle_id}</td>
+                <td className="border border-white px-4 py-2">{vehicle.make}</td>
+                <td className="border border-white px-4 py-2">{vehicle.model}</td>
+                <td className="border border-white px-4 py-2">{vehicle.year}</td>
+                <td className="border border-white px-4 py-2">{vehicle.status}</td>
+                <td className="border border-white px-4 py-2">
                   <button
                     onClick={() => handleEditvehicle(vehicle)}
-                    className="btn btn-sm btn-outline btn-info mr-2"
+                    className="bg-green-400 rounded p-0.5"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handledeleteVehicle(vehicle.vehicle_id)}
-                    className="btn btn-sm btn-outline btn-warning"
+                    className="bg-red-700 rounded p-0.5"
                   >
                     Delete
                   </button>
