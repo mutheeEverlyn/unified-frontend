@@ -3,27 +3,27 @@ const PaymentsInfo = () => {
     const { data, isLoading, isError } = useGetPaymentsInfoQuery();
   return (
     <div>
-       <div className="overflow-x-auto  bg-gray-800 text-white rounded-lg p-4 min-h-screen">
+       <div className="overflow-x-auto  bg-amber-300 text-white rounded-lg p-4 min-h-screen">
         <h1 className='text-xl my-4'>Payments Data</h1>
-        <table className="table table-xs">
+        <table className="table-auto border-collapse  w-full bg-gray-400 text-white border border-white ">
           <thead>
             <tr>
-              <th className='text-white'> transaction_id</th>
-              <th className='text-white'> amount</th>
-              <th className='text-white'>status</th>
-              <th className='text-white'>transaction_date</th>
-              <th className='text-white'>created_at</th>
-              <th className='text-white'>updated_at</th>
-              <th className='text-white'>user_id</th>
-              <th className='text-white'>booking_id</th>
-              <th className='text-white'>location_id</th>
-              <th className='text-white'>vehicle_id</th>
-              <th className='text-white'>booking_date</th>
-              <th className='text-white'>return_date</th>
-              <th className='text-white'> total_amount</th>
-              <th className='text-white'>booking_status</th>
-              <th className='text-white'>created_at</th>
-              <th className='text-white'>updated_at</th>
+              <th className='text-white border border-white px-4 py-2'> transaction_id</th>
+              <th className='text-white border border-white px-4 py-2'> amount</th>
+              <th className='text-white border border-white px-4 py-2'>status</th>
+              <th className='text-white border border-white px-4 py-2'>transaction_date</th>
+              <th className='text-white border border-white px-4 py-2'>created_at</th>
+              <th className='text-white border border-white px-4 py-2'>updated_at</th>
+              <th className='text-white border border-white px-4 py-2'>user_id</th>
+              <th className='text-white border border-white px-4 py-2'>booking_id</th>
+              <th className='text-white border border-white px-4 py-2'>location_id</th>
+              <th className='text-white border border-white px-4 py-2'>vehicle_id</th>
+              <th className='text-white border border-white px-4 py-2'>booking_date</th>
+              <th className='text-white border border-white px-4 py-2'>return_date</th>
+              <th className='text-white border border-white px-4 py-2'> total_amount</th>
+              <th className='text-white border border-white px-4 py-2'>booking_status</th>
+              <th className='text-white border border-white px-4 py-2'>created_at</th>
+              <th className='text-white border border-white px-4 py-2'>updated_at</th>
             </tr>
           </thead>
           <tbody>
@@ -36,20 +36,20 @@ const PaymentsInfo = () => {
                 data && data.map((payments:TPaymentsInfo) => (
                   <tr key={payments.transaction_id}>
                      <td>{payments.transaction_id}</td>
-                    <td>{payments.amount}</td>
-                    <td>{payments.status}</td>
-                    <td>{payments.transaction_date}</td>
-                    <td>{payments.created_at}</td>
-                    <td>{payments.purchase.user_id}</td>
-                    <td>{payments.purchase.purchase_id}</td>
-                    <td>{payments.purchase.location_id}</td>
-                    <td>{payments.purchase.vehicle_id}</td>
-                    <td>{payments.purchase.booking_date}</td>
-                    <td>{payments.purchase.return_date}</td>
-                    <td>{payments.purchase.total_amount}</td>
-                    <td>{payments.purchase.status}</td>
-                    <td>{payments.purchase.created_at}</td>
-                    <td>{payments.purchase.updated_at}</td>
+                    <td className="border border-white px-4 py-2">{payments.amount}</td>
+                    <td className="border border-white px-4 py-2">{payments.status}</td>
+                    <td className="border border-white px-4 py-2">{payments.transaction_date}</td>
+                    <td className="border border-white px-4 py-2">{payments.created_at}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.user_id}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.purchase_id}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.location_id}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.vehicle_id}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.booking_date}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.return_date}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.total_amount}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.status}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.created_at}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.updated_at}</td>
                   </tr>
                 ))
               )
