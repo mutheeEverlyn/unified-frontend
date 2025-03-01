@@ -134,7 +134,7 @@ const Land: React.FC = () => {
           },
         }}
       />
-      <div className="p-4">
+      <div className="overflow-x-auto bg-amber-300 text-white rounded-lg p-4 min-h-screen">
         <h1 className="text-xl my-4">{editLandId ? 'Edit Land' : 'Add New Land'}</h1>
         <form onSubmit={editLandId ? handleUpdateLand : handlecreateLand} className="mb-4">
           <div className="mb-2">
@@ -143,7 +143,7 @@ const Land: React.FC = () => {
               id="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             >
               <option value="">Select status</option>
@@ -158,7 +158,7 @@ const Land: React.FC = () => {
               type="text"
               value={land_type}
               onChange={(e) => setLand_type(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -170,7 +170,7 @@ const Land: React.FC = () => {
               step="0.01"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -181,7 +181,7 @@ const Land: React.FC = () => {
               type="text"
               value={history}
               onChange={(e) => setHistory(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -192,7 +192,7 @@ const Land: React.FC = () => {
               type="text"
               value={size}
               onChange={(e) => setSize(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
             />
           </div>
           <div className="mb-2">
@@ -202,12 +202,12 @@ const Land: React.FC = () => {
               type="text"
               value={image}
               onChange={(e) => setImage(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
             />
           </div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-gray-400 hover:bg-black text-white font-bold py-2 px-4 rounded"
           >
             {editLandId ? 'Update Land' : 'Add Land'}
           </button>
@@ -216,35 +216,35 @@ const Land: React.FC = () => {
         {isLoading && <p>Loading land...</p>}
         {isError && <p>Error loading land.</p>}
         
-        <table className="w-full bg-gray-800 text-white border border-gray-700">
+        <table className="table-auto border-collapse w-full bg-gray-400 text-white border border-white">
           <thead>
             <tr>
-              <th className="p-2 border-b">ID</th>
-              <th className="p-2 border-b">status</th>
-              <th className="p-2 border-b">price</th>
-              <th className="p-2 border-b">land_type</th>
-              <th className="p-2 border-b">size</th>
-              <th className="p-2 border-b">Actions</th>
+              <th className='text-white border border-white px-4 py-2'>ID</th>
+              <th className='text-white border border-white px-4 py-2'>status</th>
+              <th className='text-white border border-white px-4 py-2'>price</th>
+              <th className='text-white border border-white px-4 py-2'>land_type</th>
+              <th className='text-white border border-white px-4 py-2'>size</th>
+              <th className='text-white border border-white px-4 py-2'>Actions</th>
             </tr>
           </thead>
           <tbody>
             {land && land.map((land: TLand) => (
               <tr key={land.land_id}>
-                <td className="p-2 border-b">{land.land_id}</td>
-                <td className="p-2 border-b">{land.status}</td>
-                <td className="p-2 border-b">{land.price}</td>
-                <td className="p-2 border-b">{land.land_type}</td>
-                <td className="p-2 border-b">{land.size}</td>
-                <td className="p-2 border-b">
+                <td className="border border-white px-4 py-2">{land.land_id}</td>
+                <td className="border border-white px-4 py-2">{land.status}</td>
+                <td className="border border-white px-4 py-2">{land.price}</td>
+                <td className="border border-white px-4 py-2">{land.land_type}</td>
+                <td className="border border-white px-4 py-2">{land.size}</td>
+                <td className="border border-white px-4 py-2">
                   <button
                     onClick={() => handleEditLand(land)}
-                    className="btn btn-sm btn-outline btn-info mr-2"
+                    className="bg-green-400 rounded p-0.5 mr-2"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handledeleteLand(land.land_id)}
-                    className="btn btn-sm btn-outline btn-warning"
+                    className="bg-red-700 rounded p-0.5"
                   >
                     Delete
                   </button>
