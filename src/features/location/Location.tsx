@@ -102,7 +102,7 @@ const Location: React.FC = () => {
         }}
       />
 
-      <div className="overflow-x-auto bg-gray-800 text-white rounded-lg p-4 min-h-screen">
+      <div className="overflow-x-auto bg-amber-300 text-white rounded-lg p-4 min-h-screen">
       <form onSubmit={editLocationId !== null ? handleUpdateLocation : handleCreateLocation}>
           <div className="mb-2">
             <label htmlFor="full_name" className="block">Name:</label>
@@ -112,7 +112,7 @@ const Location: React.FC = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -124,7 +124,7 @@ const Location: React.FC = () => {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -136,23 +136,23 @@ const Location: React.FC = () => {
               name="contact_phone"
               value={formData.contact_phone}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
-          <button className='btn btn-sm btn-outline btn-success'>{editLocationId !== null ? 'Update location' : 'Add location' } </button>
+          <button className='bg-gray-400 p-0.5 rounded-b-md'>{editLocationId !== null ? 'Update location' : 'Add location' } </button>
           </form>
         <h1 className='text-xl my-4'>Location and branches Data</h1>
-        <table className="table table-xs">
+        <table className="table-auto border-collapse  w-full bg-gray-400 text-white border border-white ">
           <thead>
             <tr>
-              <th className='text-white'>location_id</th>
-              <th className='text-white'>name</th>
-              <th className='text-white'>address</th>
-              <th className='text-white'>contact_phone</th>
-              <th className='text-white'>created_at</th>
-              <th className='text-white'>updated_at</th>
-              <th className='text-white'>Options</th>
+              <th className='text-white border border-white px-4 py-2'>location_id</th>
+              <th className='text-white border border-white px-4 py-2'>name</th>
+              <th className='text-white border border-white px-4 py-2'>address</th>
+              <th className='text-white border border-white px-4 py-2'>contact_phone</th>
+              <th className='text-white border border-white px-4 py-2'>created_at</th>
+              <th className='text-white border border-white px-4 py-2'>updated_at</th>
+              <th className='text-white border border-white px-4 py-2'>Options</th>
             </tr>
           </thead>
           <tbody>
@@ -164,66 +164,66 @@ const Location: React.FC = () => {
               ) : (
                 data && data.map((location: Tlocation) => (
                   <tr key={location.location_id}>
-                    <th>{location.location_id}</th>
-                    <td>{editLocationId===location.location_id ?(
+                    <th className="border border-white px-4 py-2">{location.location_id}</th>
+                    <td className="border border-white px-4 py-2">{editLocationId===location.location_id ?(
                        <input
                        type="text"
                        value={formData.name}
                        name="name"
                        onChange={handleChange}
-                       className="w-full p-2 rounded bg-gray-700 text-white"
+                       className="w-full p-2 rounded bg-white text-black"
                        required
                      />
                     ):(
                     location.name)}</td>
-                    <td>{editLocationId===location.location_id?( <input
+                    <td className="border border-white px-4 py-2">{editLocationId===location.location_id?( <input
                         type="text"
                         value={formData.address}
                         name="address"
                         onChange={handleChange}
-                        className="w-full p-2 rounded bg-gray-700 text-white"
+                        className="w-full p-2 rounded bg-white text-black"
                         required
                       />):(location.address)}</td>
-                    <td>{editLocationId===location.location_id?(
+                    <td className="border border-white px-4 py-2">{editLocationId===location.location_id?(
                           <input
                           type="text"
                           value={formData.contact_phone}
                           name="contact_phone"
                           onChange={handleChange}
-                          className="w-full p-2 rounded bg-gray-700 text-white"
+                          className="w-full p-2 rounded bg-white text-black"
                           required
                         />
                     ):(location.contact_phone)}</td>
-                    <td>{editLocationId===location.location_id?(
+                    <td className="border border-white px-4 py-2">{editLocationId===location.location_id?(
                           <input
                           type="text"
                           value={location.created_at}
                           name="created_at"
                           onChange={handleChange}
-                          className="w-full p-2 rounded bg-gray-700 text-white"
+                          className="w-full p-2 rounded bg-white text-black"
                           required
                         />
                     ):(location.created_at)}</td>
-                    <td>{editLocationId===location.location_id?(
+                    <td className="border border-white px-4 py-2">{editLocationId===location.location_id?(
                         <input
                         type="text"
                         value={location.updated_at}
                         name="updated_at"
                         onChange={handleChange}
-                        className="w-full p-2 rounded bg-gray-700 text-white"
+                        className="w-full p-2 rounded bg-white text-black"
                         required
                       />
                     ):(location.updated_at)}</td>
-                      <td className='space-x-2'>
+                      <td className='space-x-2 border border-white px-4 py-2'>
                       {editLocationId === location.location_id ? (
                         <>
-                          <button className='btn btn-sm btn-outline btn-success' onClick={handleUpdateLocation}>Save</button>
-                          <button className='btn btn-sm btn-outline btn-warning' onClick={() => setEditLocationId(null)}>Cancel</button>
+                          <button className='bg-green-400 rounded p-0.5' onClick={handleUpdateLocation}>Save</button>
+                          <button className='bg-red-700 rounded p-0.5' onClick={() => setEditLocationId(null)}>Cancel</button>
                         </>
                       ) : (
-                        <button className='btn btn-sm btn-outline btn-info' onClick={() => handleEditLocation(location)}>Edit</button>
+                        <button className='bg-green-400 rounded p-0.5 mr-2' onClick={() => handleEditLocation(location)}>Edit</button>
                       )}
-                      <button className='btn btn-sm btn-outline btn-warning' onClick={() => handleDelete(location.location_id)}>Delete</button>
+                      <button className='bg-red-700 rounded p-0.5' onClick={() => handleDelete(location.location_id)}>Delete</button>
                     </td>
                   </tr>
                 ))
