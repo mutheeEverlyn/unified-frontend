@@ -145,12 +145,12 @@ const Houses: React.FC = () => {
   return (
     <>
       <Toaster toastOptions={{classNames: {error: 'bg-red-400',success: 'text-green-400', warning: 'text-yellow-400', info: 'bg-blue-400',},}} />
-      <div className="p-4">
+      <div className="overflow-x-auto bg-amber-300 text-white rounded-lg p-4 min-h-screen">
         <h1 className="text-xl my-4">{editHouseId ? 'Edit House' : 'Add New House'}</h1>
         <form onSubmit={editHouseId ? handleUpdateHouse : handlecreateHouse} className="mb-4">
           <div className="mb-2">
             <label htmlFor="status" className="block">status:</label>
-            <select id="status" value={status} onChange={(e) => setStatus(e.target.value)} className="w-full p-2 rounded bg-gray-700 text-white" required>
+            <select id="status" value={status} onChange={(e) => setStatus(e.target.value)} className="w-full p-2 rounded bg-white text-black" required>
               <option value="">Select status</option>
               <option value="available">Available</option>
               <option value="unavailable">Unavailable</option>
@@ -158,20 +158,20 @@ const Houses: React.FC = () => {
           </div>
           <div className="mb-2">
             <label htmlFor="number_of_rooms" className="block">number_of_rooms:</label>
-            <input id="number_of_rooms" type="number" value={number_of_rooms} onChange={(e) => setNumber_of_rooms(e.target.value)} className="w-full p-2 rounded bg-gray-700 text-white" required
+            <input id="number_of_rooms" type="number" value={number_of_rooms} onChange={(e) => setNumber_of_rooms(e.target.value)} className="w-full p-2 rounded bg-white text-black" required
             />
           </div>
           <div className="mb-2">
             <label htmlFor="number_of_bedrooms" className="block">number_of_bedrooms:</label>
-            <input id="number_of_bedrooms" type="number" value={number_of_bedrooms} onChange={(e) => setNumber_of_bedrooms(e.target.value)} className="w-full p-2 rounded bg-gray-700 text-white" required/>
+            <input id="number_of_bedrooms" type="number" value={number_of_bedrooms} onChange={(e) => setNumber_of_bedrooms(e.target.value)} className="w-full p-2 rounded bg-white text-black" required/>
           </div>
           <div className="mb-2">
             <label htmlFor="year_built" className="block">year_built:</label>
-            <input id="year_built" type="number"value={year_built}  onChange={(e) => setYear_built(e.target.value)} className="w-full p-2 rounded bg-gray-700 text-white"required/>
+            <input id="year_built" type="number"value={year_built}  onChange={(e) => setYear_built(e.target.value)} className="w-full p-2 rounded bg-white text-black"required/>
           </div>
           <div className="mb-2">
             <label htmlFor="type" className="block">Type:</label>
-            <input id="type" type="text" value={type} onChange={(e) => setType(e.target.value)}className="w-full p-2 rounded bg-gray-700 text-white" required  />
+            <input id="type" type="text" value={type} onChange={(e) => setType(e.target.value)}className="w-full p-2 rounded bg-white text-black" required  />
           </div>
           <div className="mb-2">
             <label htmlFor="price" className="block">Rental Rate:</label>
@@ -180,7 +180,7 @@ const Houses: React.FC = () => {
               step="0.01"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -191,7 +191,7 @@ const Houses: React.FC = () => {
               type="text"
               value={history}
               onChange={(e) => setHistory(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -202,7 +202,7 @@ const Houses: React.FC = () => {
               type="text"
               value={interior_image}
               onChange={(e) => setInterior_image(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
             />
           </div>
           <div className="mb-2">
@@ -212,10 +212,10 @@ const Houses: React.FC = () => {
               type="text"
               value={exterior_image}
               onChange={(e) => setExterior_image(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
             />
           </div>
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  >
+          <button type="submit" className="bg-gray-400 hover:bg-black text-white font-bold py-2 px-4 rounded"  >
             {editHouseId ? 'Update House' : 'Add House'}
           </button>
         </form>
@@ -223,33 +223,33 @@ const Houses: React.FC = () => {
         {isLoading && <p>Loading houses...</p>}
         {isError && <p>Error loading houses.</p>}
         
-        <table className="w-full bg-gray-800 text-white border border-gray-700">
+        <table className="table-auto border-collapse  w-full bg-gray-400 text-white border border-white">
           <thead>
             <tr>
-              <th className="p-2 border-b">ID</th>
-              <th className="p-2 border-b">number_of_bedrooms</th>
-              <th className="p-2 border-b">number_of_rooms</th>
-              <th className="p-2 border-b">year_built</th>
-              <th className="p-2 border-b">status</th>
-              <th className="p-2 border-b">Actions</th>
+              <th className='text-white border border-white px-4 py-2'>ID</th>
+              <th className='text-white border border-white px-4 py-2'>number_of_bedrooms</th>
+              <th className='text-white border border-white px-4 py-2'>number_of_rooms</th>
+              <th className='text-white border border-white px-4 py-2'>year_built</th>
+              <th className='text-white border border-white px-4 py-2'>status</th>
+              <th className='text-white border border-white px-4 py-2'>Actions</th>
             </tr>
           </thead>
           <tbody>
             {houses && houses.map((house: THouse) => (
               <tr key={house.house_id}>
-                <td className="p-2 border-b">{house.house_id}</td>
-                <td className="p-2 border-b">{house.number_of_bedrooms}</td>
-                <td className="p-2 border-b">{house.number_of_rooms}</td>
-                <td className="p-2 border-b">{house.year_built}</td>
-                <td className="p-2 border-b">{house.status}</td>
-                <td className="p-2 border-b">
+                <td className="border border-white px-4 py-2">{house.house_id}</td>
+                <td className="border border-white px-4 py-2">{house.number_of_bedrooms}</td>
+                <td className="border border-white px-4 py-2">{house.number_of_rooms}</td>
+                <td className="border border-white px-4 py-2">{house.year_built}</td>
+                <td className="border border-white px-4 py-2">{house.status}</td>
+                <td className="border border-white px-4 py-2">
                   <button
                     onClick={() => handleEditHouse(house)}
-                    className="btn btn-sm btn-outline btn-info mr-2"
+                    className="bg-green-400 rounded p-0.5 mr-2"
                   >
                     Edit
                   </button>
-                  <button onClick={() => handleDeleteHouse(house.house_id)} className="btn btn-sm btn-outline btn-warning" >
+                  <button onClick={() => handleDeleteHouse(house.house_id)} className="bg-red-700 rounded p-0.5" >
                     Delete
                   </button>
                 </td>
