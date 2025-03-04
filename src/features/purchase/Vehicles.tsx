@@ -357,7 +357,7 @@ const Vehicles: React.FC = () => {
                 <td className="border border-white px-4 py-2">
                   <button
                     onClick={() => handleEditvehicle(vehicle)}
-                    className="bg-green-400 rounded p-0.5"
+                    className="bg-green-400 rounded p-0.5 mr-2"
                   >
                     Edit
                   </button>
