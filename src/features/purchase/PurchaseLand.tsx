@@ -1,4 +1,4 @@
-
+import { Toaster, toast } from "sonner";
 import { useGetLandQuery,TLand } from "./LandApi";
 
 const PurchaseLand= () => {
@@ -34,9 +34,20 @@ const PurchaseLand= () => {
             <p className="text-gray-600">Size: {land.size}</p>
             <p className="text-gray-600">Status: {land.status}</p>
             <p className="text-lg font-bold text-green-600 mt-2">${land.price}</p>
-            <button className="bg-blue-600 text-white px-4 py-2 mt-4 w-full rounded-md hover:bg-blue-700">
-              Rent / Buy
-            </button>
+            <div className="flex justify-between mt-4">
+                <button
+                  onClick={() => toast.success("House booked successfully!")}
+                  className="px-4 py-2 bg-gray-400 hover:bg-black text-white rounded-md transition"
+                >
+                  more details
+                </button>
+                <button
+                  onClick={() => toast.success("House purchased successfully!")}
+                  className="px-4 py-2 bg-amber-300 hover:bg-black text-white rounded-md transition"
+                >
+                  Buy
+                </button>
+              </div>
           </div>
         ))}
       </div>
