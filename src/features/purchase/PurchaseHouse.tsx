@@ -25,13 +25,13 @@ const PurchaseHouse: React.FC = () => {
               <div className="flex justify-between mt-4">
                 <button
                   onClick={() => toast.success("House booked successfully!")}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition"
+                  className="px-4 py-2 bg-gray-400 hover:bg-black text-white rounded-md transition"
                 >
-                  Rent
+                  more details
                 </button>
                 <button
                   onClick={() => toast.success("House purchased successfully!")}
-                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition"
+                  className="px-4 py-2 bg-amber-300 hover:bg-black text-white rounded-md transition"
                 >
                   Buy
                 </button>
