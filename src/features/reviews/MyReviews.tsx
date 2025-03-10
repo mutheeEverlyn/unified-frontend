@@ -68,7 +68,6 @@ const MyReviews: React.FC = () => {
               <th className="text-white">rating</th>
               <th className="text-white">comment</th>
               <th className="text-white">created_at</th>
-              <th className="text-white">updated_at</th>
               <th className="text-white">Options</th>
             </tr>
           </thead>
@@ -110,7 +109,6 @@ const MyReviews: React.FC = () => {
                   </td>
                  
                   <td>{review.created_at}</td>
-                  <td>{review.updated_at}</td>
                   <td className="flex gap-2">
                     {ediTReviewId === review.review_id ? (
                       <>

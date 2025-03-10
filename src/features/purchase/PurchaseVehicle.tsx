@@ -1,23 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetVehiclesQuery, TVehicle } from "./VehicleApi";
 import { useCreatePurchaseMutation } from "./PurchaseApi";
-// import { useGetLocationQuery, Tlocation } from '../location/LocationApi';
+import { useGetLocationQuery, Tlocation } from '../location/LocationApi';
 import { Toaster, toast } from "sonner";
+import debounce from 'lodash.debounce';
 
 const PurchaseVehicle = () => {
-  const { data:vehicles, isLoading, error } = useGetVehiclesQuery();
-  console.log("Vehicle Data:", vehicles);
-  console.log("Vehicle Fetch Error:", error);
+  const { data: vehicles, isLoading, error } = useGetVehiclesQuery();
+  const { data: locations, isLoading: isLocationsLoading, error: locationsError } = useGetLocationQuery();
   const [createPurchase] = useCreatePurchaseMutation();
   const navigate = useNavigate();
   const [selectedVehicle, setSelectedVehicle] = useState<TVehicle | null>(null);
-
+  const [selectedLocation_id, setSelectedLocation_id] = useState<number | null>(null);
+  const [showDetails, setShowDetails] = useState<number | null>(null);
   const userDetailsString = localStorage.getItem("userDetails") || "{}";
   const userDetails = JSON.parse(userDetailsString);
   const user_id = userDetails?.user_id;
 
+  useEffect(() => {
+    console.log("Vehicle Data:", vehicles);
+    if (error) {
+      console.log("Vehicle Fetch Error:", error);
+    }
+  }, [vehicles, error]);
+
   const handlePurchase = async () => {
+    if (!selectedLocation_id) {
+      toast.error("Please select a location.");
+      return;
+    }
     if (!selectedVehicle) {
       toast.error("No vehicle selected.");
       return;
@@ -38,12 +50,14 @@ const PurchaseVehicle = () => {
         user_id,
         vehicle_id: selectedVehicle.vehicle_id,
         price: selectedVehicle.price,
+        location_id: selectedLocation_id,
         status: "Purchased",
+        booking_status: 'Pending'
       });
 
       if (response?.data?.msg === "purchase successful") {
         toast.success("Vehicle purchased successfully!");
-        navigate("/userDashboard/purchases");
+        navigate("/userDashboard/purchase");
       } else {
         toast.error("Failed to purchase vehicle.");
       }
@@ -53,36 +67,92 @@ const PurchaseVehicle = () => {
     }
   };
 
-  if (isLoading) return <div className="text-center text-blue-500 mt-10">Loading vehicles...</div>;
-  if (error) return <div className="text-center text-red-500 mt-10">Failed to load vehicles. Please try again later.</div>;
+  const handleShowDetails = debounce((vehicleId: number) => {
+    setShowDetails(prev => (prev === vehicleId ? null : vehicleId));
+  }, 300);
+
+  const filteredVehicles = selectedLocation_id
+    ? vehicles?.filter((vehicle: TVehicle) => vehicle.location_id === selectedLocation_id)
+    : vehicles;
+
+  if (isLoading || isLocationsLoading) return <p>Loading...</p>;
+  if (error || locationsError) return <p>Error loading data.</p>;
 
   return (
-    <div className="container mx-auto p-4">
-      <Toaster />
-      <h2 className="text-2xl font-bold text-center mb-6">Available Vehicles</h2>
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-        {vehicles?.map((vehicle: TVehicle) => (
-          <div key={vehicle.vehicle_id} className="border rounded-lg shadow-lg p-4 hover:shadow-xl transition duration-300">
-            <img src={vehicle.exterior_image} alt={vehicle.make} className="w-full h-48 object-cover rounded-md" />
-            <h3 className="text-xl font-semibold mt-3">{vehicle.make} {vehicle.model}</h3>
-            <p className="text-gray-600">Year: {vehicle.year}</p>
-            <p className="text-gray-600">Fuel Type: {vehicle.fuel_type}</p>
-            <p className="text-gray-600">Transmission: {vehicle.transmission}</p>
-            <p className="text-lg font-bold text-green-600 mt-2">${vehicle.price}</p>
-            {vehicle.status === "available" ? (
-              <button
-                onClick={() => setSelectedVehicle(vehicle)}
-                className="bg-blue-600 text-white px-4 py-2 mt-4 w-full rounded-md hover:bg-blue-700"
-              >
-                Purchase
+    <div className="p-4">
+      <Toaster
+        toastOptions={{
+          classNames: {
+            error: 'bg-red-400',
+            success: 'bg-green-400',
+          },
+        }}
+      />
+      <div className="container">
+        <h1 className="text-3xl sm:text-4xl font-semibold font-serif mb-3">Available Vehicles</h1>
+        <div className="mb-6">
+          <label className="block mb-2 text-sm font-medium text-gray-700">Select Location</label>
+          <select
+            className="block w-full p-2 border border-gray-300 rounded-md shadow-sm"
+            value={selectedLocation_id || ''}
+            onChange={(e) => setSelectedLocation_id(Number(e.target.value))}
+          >
+            <option value="" disabled>Select a location</option>
+            {locations?.map((location: Tlocation) => (
+              <option key={location.location_id} value={location.location_id}>
+                {location.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-16">
+          {filteredVehicles?.map((vehicle: TVehicle) => (
+            <div key={vehicle.vehicle_id} className="border rounded-lg shadow-lg p-4 hover:shadow-xl transition duration-300 w-full">
+              <img src={vehicle.exterior_image} alt={vehicle.make} className="w-full h-48 object-cover rounded-md" />
+              <h3 className="text-xl font-semibold mt-3">{vehicle.make} {vehicle.model}</h3>
+              <p className="text-gray-600">Year: {vehicle.year}</p>
+              <p className="text-gray-600">Fuel Type: {vehicle.fuel_type}</p>
+              <p className="text-gray-600">Transmission: {vehicle.transmission}</p>
+              <p className="text-lg font-bold text-green-600 mt-2">${vehicle.price}</p>
+              <button onClick={() => handleShowDetails(vehicle.vehicle_id)} className="bg-green-600 text-white px-4 py-2 mt-4 w-full rounded-md hover:bg-green-700 focus:outline-none">
+                {showDetails === vehicle.vehicle_id ? "Hide Details" : "More Details"}
               </button>
-            ) : (
-              <p className="text-red-500 mt-2">Not Available</p>
-            )}
-          </div>
-        ))}
+              {showDetails === vehicle.vehicle_id && (
+                <div className="mt-4">
+                  <p className="text-gray-600">History: {vehicle.history}</p>
+                  <p className="text-gray-600">Color: {vehicle.color}</p>
+                  <p className="text-gray-600">Engine Capacity: {vehicle.engine_capacity}</p>
+                  <div className="flex space-x-4">
+                    <div>
+                      <p className="text-gray-600">Exterior Image:</p>
+                      <img src={vehicle.exterior_image} alt="Exterior" className="w-48 h-48 object-cover rounded-md" />
+                    </div>
+                    <div>
+                      <p className="text-gray-600">Interior Image:</p>
+                      <img src={vehicle.interior_image} alt="Interior" className="w-48 h-48 object-cover rounded-md" />
+                    </div>
+                  </div>
+                  <p className="text-gray-600">Fuel Type: {vehicle.fuel_type}</p>
+                  <p className="text-gray-600">Price: {vehicle.price}</p>
+                  <p className="text-gray-600">Make: {vehicle.make}</p>
+                  <p className="text-gray-600">Model: {vehicle.model}</p>
+                  <p className="text-gray-600">Seating Capacity: {vehicle.seating_capacity}</p>
+                </div>
+              )}
+              {vehicle.status === "available" ? (
+                <button
+                  onClick={() => setSelectedVehicle(vehicle)}
+                  className="bg-blue-600 text-white px-4 py-2 mt-4 w-full rounded-md hover:bg-blue-700"
+                >
+                  Purchase
+                </button>
+              ) : (
+                <p className="text-red-500 mt-2">Not Available</p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-
       {selectedVehicle && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 max-w-md rounded-lg">

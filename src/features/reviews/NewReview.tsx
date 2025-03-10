@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useCreateCustomerReviewsMutation} from "./ReviewsApi";
+import { useCreateCustomerReviewsMutation } from "./ReviewsApi";
 import { Toaster, toast } from 'sonner';
-// import { Tticket } from "./TicketApi";
 
-const NewReview:React.FC = () => {
+const NewReview: React.FC = () => {
   const userDetails = localStorage.getItem('userDetails');
   if (!userDetails) {
     return <div>Error: No data.</div>;
@@ -11,28 +10,35 @@ const NewReview:React.FC = () => {
 
   const parsedUserDetails = JSON.parse(userDetails);
   const user_id = parsedUserDetails.user_id;
-  const [createReview] = useCreateCustomerReviewsMutation()
+  const [createReview] = useCreateCustomerReviewsMutation();
 
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState('');
 
   const handleCreateReview = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (rating === null || rating < 1 || rating > 5) {
+      toast.error('Rating must be between 1 and 5');
+      return;
+    }
+
     const newReview = {
       user_id: user_id,
       rating,
       comment,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
+      created_at: new Date().toISOString()
     };
+
+    console.log('Sending review data:', newReview);
 
     try {
       await createReview(newReview).unwrap();
       toast.success('Review created successfully');
-      setRating(0);
+      setRating(null);
       setComment('');
     } catch (error) {
+      console.error('Failed to create review:', error);
       toast.error('Failed to create review');
     }
   };
@@ -57,8 +63,8 @@ const NewReview:React.FC = () => {
             <input
               id="rating"
               type="number"
-              value={rating}
-              placeholder="1,2,3,4,5,"
+              value={rating ?? ''}
+              placeholder="1,2,3,4,5"
               onChange={(e) => setRating(e.target.valueAsNumber)}
               className="w-full p-2 rounded bg-gray-700 text-white"
               required
@@ -78,7 +84,7 @@ const NewReview:React.FC = () => {
         </form>
       </div>
     </>
-  )
+  );
 };
 
 export default NewReview;

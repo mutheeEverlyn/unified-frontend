@@ -4,6 +4,9 @@ export interface TPurchase{
     purchase_id:number;
     user_id:number;
     location_id:number;
+    vehicle_id:number;
+    land_id:number;
+    house_id:number;
     purchase_date:string;
     total_amount:number;
     purchase_status:string;

@@ -62,7 +62,6 @@ const CustomerReviews: React.FC = () => {
                     <td>{customerReview.rating}</td>
                     <td>{customerReview.comment}</td>
                     <td>{customerReview.created_at}</td>
-                    <td>{customerReview.updated_at}</td>
                     <td>{customerReview.user.address}</td>
                     <td>{customerReview.user.contact_phone}</td>
                     <td>{customerReview.user.created_at}</td>

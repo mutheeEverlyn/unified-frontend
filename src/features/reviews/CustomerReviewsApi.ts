@@ -6,7 +6,6 @@ export interface TCustomerReview{
     rating:number;
     comment:string;
     created_at:string;
-    updated_at:string;
  user:{
      address:string;
     contact_phone:string;

@@ -6,7 +6,6 @@ export interface TReview{
     rating:number;
     comment:string;
     created_at:string;
-    updated_at:string
   }
 
 // Define the API slice

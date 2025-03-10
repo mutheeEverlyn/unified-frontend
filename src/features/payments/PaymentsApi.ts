@@ -9,11 +9,11 @@ export const PaymentsAPI = createApi({
     baseUrl: 'https://unified-property-1.onrender.com',
   }),
   endpoints: (builder) => ({
-    createPayments: builder.mutation<TPayments,{booking_id:number;amount:number}>({
-      query: ({booking_id,amount}) => ({
+    createPayments: builder.mutation<TPayments,{purchase_id:number;amount:number}>({
+      query: ({purchase_id,amount}) => ({
         url: 'create-checkout-session',
         method: 'POST',
-        body: {booking_id,amount,success_url:'https://unified-property-1.onrender.com/payment-success',cancel_url:'https://unified-property-1.onrender.com/payment-cancel'},
+        body: {purchase_id,amount,success_url:'https://unified-property-1.onrender.com/payment-success',cancel_url:'https://unified-property-1.onrender.com/payment-cancel'},
       }),
     }), 
   }),

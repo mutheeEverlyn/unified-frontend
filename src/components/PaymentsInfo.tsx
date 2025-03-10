@@ -15,11 +15,11 @@ const PaymentsInfo = () => {
               <th className='text-white border border-white px-4 py-2'>created_at</th>
               <th className='text-white border border-white px-4 py-2'>updated_at</th>
               <th className='text-white border border-white px-4 py-2'>user_id</th>
-              <th className='text-white border border-white px-4 py-2'>booking_id</th>
+              <th className='text-white border border-white px-4 py-2'>purchase_id</th>
               <th className='text-white border border-white px-4 py-2'>location_id</th>
               <th className='text-white border border-white px-4 py-2'>vehicle_id</th>
-              <th className='text-white border border-white px-4 py-2'>booking_date</th>
-              <th className='text-white border border-white px-4 py-2'>return_date</th>
+              <th className='text-white border border-white px-4 py-2'>land_id</th>
+              <th className='text-white border border-white px-4 py-2'>house_id</th>
               <th className='text-white border border-white px-4 py-2'> total_amount</th>
               <th className='text-white border border-white px-4 py-2'>booking_status</th>
               <th className='text-white border border-white px-4 py-2'>created_at</th>
@@ -44,8 +44,8 @@ const PaymentsInfo = () => {
                     <td className="border border-white px-4 py-2">{payments.purchase.purchase_id}</td>
                     <td className="border border-white px-4 py-2">{payments.purchase.location_id}</td>
                     <td className="border border-white px-4 py-2">{payments.purchase.vehicle_id}</td>
-                    <td className="border border-white px-4 py-2">{payments.purchase.booking_date}</td>
-                    <td className="border border-white px-4 py-2">{payments.purchase.return_date}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.land_id}</td>
+                    <td className="border border-white px-4 py-2">{payments.purchase.house_id}</td>
                     <td className="border border-white px-4 py-2">{payments.purchase.total_amount}</td>
                     <td className="border border-white px-4 py-2">{payments.purchase.status}</td>
                     <td className="border border-white px-4 py-2">{payments.purchase.created_at}</td>
