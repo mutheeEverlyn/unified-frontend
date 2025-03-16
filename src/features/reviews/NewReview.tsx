@@ -26,20 +26,30 @@ const NewReview: React.FC = () => {
     const newReview = {
       user_id: user_id,
       rating,
-      comment,
-      created_at: new Date().toISOString()
+      comment
     };
 
     console.log('Sending review data:', newReview);
 
     try {
-      await createReview(newReview).unwrap();
+      const response = await createReview(newReview).unwrap();
+      console.log('Server response:', response);
       toast.success('Review created successfully');
       setRating(null);
       setComment('');
     } catch (error) {
       console.error('Failed to create review:', error);
-      toast.error('Failed to create review');
+      if (error && typeof error === 'object' && 'originalStatus' in error) {
+        if ((error as any).originalStatus === 429) {
+          toast.error('Too many requests, please try again later.');
+        } else if ((error as any).originalStatus === 400) {
+          toast.error('Bad request: ' + (error as any).data.error);
+        } else {
+          toast.error('Failed to create review');
+        }
+      } else {
+        toast.error('An unexpected error occurred');
+      }
     }
   };
 
@@ -55,7 +65,7 @@ const NewReview: React.FC = () => {
           },
         }}
       />
-      <div className="overflow-x-auto bg-gray-800 text-white rounded-lg p-4 min-h-screen">
+      <div className="overflow-x-auto bg-gray-400 text-white rounded-lg p-4 min-h-screen">
         <h1 className='text-xl my-4'>Create Review</h1>
         <form onSubmit={handleCreateReview} className="mb-4">
           <div className="mb-2">
@@ -63,10 +73,10 @@ const NewReview: React.FC = () => {
             <input
               id="rating"
               type="number"
-              value={rating ?? ''}
+              value={rating !== null ? rating : ''}
               placeholder="1,2,3,4,5"
               onChange={(e) => setRating(e.target.valueAsNumber)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
@@ -76,7 +86,7 @@ const NewReview: React.FC = () => {
               id="comment"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 text-white"
+              className="w-full p-2 rounded bg-white text-black"
               required
             />
           </div>
