@@ -10,17 +10,17 @@ const PaymentsInfo = () => {
         <table className="table-auto border-collapse w-full bg-gray-400 text-white border border-white">
           <thead>
             <tr>
+            <th className='text-white border border-white px-4 py-2'>user_id</th>
+              <th className='text-white border border-white px-4 py-2'>purchase_id</th>
+              <th className='text-white border border-white px-4 py-2'>location_id</th>
+              <th className='text-white border border-white px-4 py-2'>total_amount</th>
+              <th className='text-white border border-white px-4 py-2'>purchase_status</th>
+              <th className='text-white border border-white px-4 py-2'>created_at</th>
+              <th className='text-white border border-white px-4 py-2'>updated_at</th>
               <th className='text-white border border-white px-4 py-2'>transaction_id</th>
               <th className='text-white border border-white px-4 py-2'>amount</th>
               <th className='text-white border border-white px-4 py-2'>status</th>
               <th className='text-white border border-white px-4 py-2'>transaction_date</th>
-              <th className='text-white border border-white px-4 py-2'>user_id</th>
-              <th className='text-white border border-white px-4 py-2'>purchase_id</th>
-              <th className='text-white border border-white px-4 py-2'>location_id</th>
-              <th className='text-white border border-white px-4 py-2'>total_amount</th>
-              <th className='text-white border border-white px-4 py-2'>booking_status</th>
-              <th className='text-white border border-white px-4 py-2'>created_at</th>
-              <th className='text-white border border-white px-4 py-2'>updated_at</th>
             </tr>
           </thead>
           <tbody>
@@ -32,11 +32,7 @@ const PaymentsInfo = () => {
               ) : (
                 data && data.map((payments: TPaymentsInfo) => (
                   <tr key={payments.transaction_id}>
-                    <td className="border border-white px-4 py-2">{payments.transaction_id}</td>
-                    <td className="border border-white px-4 py-2">{payments.amount}</td>
-                    <td className="border border-white px-4 py-2">{payments.status}</td>
-                    <td className="border border-white px-4 py-2">{payments.transaction_date}</td>
-                    {payments.purchase ? (
+                     {payments.purchase ? (
                       <>
                         <td className="border border-white px-4 py-2">{payments.purchase.user_id}</td>
                         <td className="border border-white px-4 py-2">{payments.purchase.purchase_id}</td>
@@ -51,6 +47,11 @@ const PaymentsInfo = () => {
                         <td className="border border-white px-4 py-2" colSpan={7}>No purchase data</td>
                       </>
                     )}
+                    <td className="border border-white px-4 py-2">{payments.transaction_id}</td>
+                    <td className="border border-white px-4 py-2">{payments.amount}</td>
+                    <td className="border border-white px-4 py-2">{payments.status}</td>
+                    <td className="border border-white px-4 py-2">{payments.transaction_date}</td>
+                   
                   </tr>
                 ))
               )
