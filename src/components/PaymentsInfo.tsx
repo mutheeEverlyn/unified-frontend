@@ -14,8 +14,6 @@ const PaymentsInfo = () => {
               <th className='text-white border border-white px-4 py-2'>amount</th>
               <th className='text-white border border-white px-4 py-2'>status</th>
               <th className='text-white border border-white px-4 py-2'>transaction_date</th>
-              <th className='text-white border border-white px-4 py-2'>created_at</th>
-              <th className='text-white border border-white px-4 py-2'>updated_at</th>
               <th className='text-white border border-white px-4 py-2'>user_id</th>
               <th className='text-white border border-white px-4 py-2'>purchase_id</th>
               <th className='text-white border border-white px-4 py-2'>location_id</th>
@@ -38,8 +36,6 @@ const PaymentsInfo = () => {
                     <td className="border border-white px-4 py-2">{payments.amount}</td>
                     <td className="border border-white px-4 py-2">{payments.status}</td>
                     <td className="border border-white px-4 py-2">{payments.transaction_date}</td>
-                    <td className="border border-white px-4 py-2">{payments.created_at}</td>
-                    <td className="border border-white px-4 py-2">{payments.updated_at}</td>
                     {payments.purchase ? (
                       <>
                         <td className="border border-white px-4 py-2">{payments.purchase.user_id}</td>
