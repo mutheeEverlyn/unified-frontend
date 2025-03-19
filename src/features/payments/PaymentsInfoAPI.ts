@@ -4,8 +4,6 @@ export interface TPaymentsInfo {
     amount:number;
     status:string;
     transaction_date:string;
-   created_at: string;
-   updated_at: string;
   purchase:{
     user_id: number;
     purchase_id: number;
