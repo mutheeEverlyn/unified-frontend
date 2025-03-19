@@ -34,7 +34,7 @@ const PaymentsInfo = () => {
                   <tr key={payments.transaction_id}>
                      {payments.purchase ? (
                       <>
-                        <td className="border border-white px-4 py-2">{payments.purchase.user_id}</td>
+                        <td className="border border-white px-4 py-2">{payments.user.user_id}</td>
                         <td className="border border-white px-4 py-2">{payments.purchase.purchase_id}</td>
                         <td className="border border-white px-4 py-2">{payments.purchase.location_id}</td>
                         <td className="border border-white px-4 py-2">{payments.purchase.total_amount}</td>
