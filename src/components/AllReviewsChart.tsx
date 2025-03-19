@@ -10,7 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { useGetCustomerReviewsQuery } from '../features/reviews/ReviewsApi';
-import { Toaster, toast } from 'sonner';
+import { Toaster } from 'sonner';
 
 // Define the Review interface
 interface Review {
