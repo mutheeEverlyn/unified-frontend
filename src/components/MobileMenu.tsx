@@ -20,12 +20,12 @@ const MobileMenu =({showItems}:mobile) => {
         </div>
     <nav className="mt-2">
     <ul className="space-y-2 text-xl px-5">
-        <li><button><Link to='/' className='hover:border-b-2 hover:text-blue-400 mb-2 inline-block'>HOME</Link></button></li>
-        <li><button><Link to='/about-us'  className='hover:border-b-2 hover:text-blue-400 mb-2 inline-block'>ABOUT US</Link></button></li>
-        <li><button><Link to='/services'  className='hover:border-b-2 hover:text-blue-400 mb-2 inline-block'>SERVICES</Link></button></li>
-        <li><button><Link to='/contactUs'  className='hover:border-b-2 hover:text-blue-400 mb-2 inline-block'>CONTACT US</Link></button></li>
-        <li> <button className=' bg-blue-400  hover:bg-primary/80 transition duration-500 rounded-md w-24 h-10 '><Link to='/login'> LOGIN</Link></button></li>
-        <li> <button className='bg-blue-400  hover:bg-primary/80 transition duration-500 rounded-md w-24 h-10 '><Link to='/register'>REGISTER</Link></button></li>
+        <li><button><Link to='/' className='hover:border-b-2 hover:text-amber-300 mb-2 inline-block'>HOME</Link></button></li>
+        <li><button><Link to='/about-us'  className='hover:border-b-2 hover:text-amber-300 mb-2 inline-block'>ABOUT US</Link></button></li>
+        <li><button><Link to='/services'  className='hover:border-b-2 hover:text-amber-300 mb-2 inline-block'>SERVICES</Link></button></li>
+        <li><button><Link to='/contactUs'  className='hover:border-b-2 hover:text-amber-300 mb-2 inline-block'>CONTACT US</Link></button></li>
+        <li> <button className=' bg-amber-300  hover:bg-gray-400 transition duration-500 rounded-md w-24 h-10 '><Link to='/login'> LOGIN</Link></button></li>
+        <li> <button className='bg-amber-300  hover:bg-gray-400 transition duration-500 rounded-md w-24 h-10 '><Link to='/register'>REGISTER</Link></button></li>
       </ul>
     </nav>
 

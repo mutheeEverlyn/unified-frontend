@@ -10,11 +10,21 @@ export interface TPaymentsInfo {
     user_id: number;
     purchase_id: number;
     location_id: number;
-    vehicle_id: number;
-    booking_date: string;
-    return_date: string;
+    property_id: number;
+    property_type: string;
+    purchase_date: string;
     total_amount: number;
-    status: string;
+   purchase_status: string;
+    created_at: string;
+    updated_at: string;
+  }
+  user:{
+    user_id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    contact_phone: string;
+    role: string;
     created_at: string;
     updated_at: string;
   }

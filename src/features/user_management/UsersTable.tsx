@@ -191,7 +191,7 @@ const UsersTable: React.FC = () => {
           <button className='bg-gray-400 p-0.5 rounded-b-sm'>{editUserId !== null ? 'Update User' : 'Add User'}</button>
         </form>
         <h1 className='text-xl my-4 text-center'>Users Data</h1>
-        <table className="table-auto border-collapse w-full bg-gray-400 text-white border border-white">
+        <table className="table-auto border-collapse  w-full bg-gray-400 text-white border border-white ">
           <thead>
             <tr>
               <th className='text-white  border-white px-4 py-2'>User ID</th>

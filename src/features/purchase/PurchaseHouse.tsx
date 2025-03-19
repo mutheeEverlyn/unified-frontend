@@ -44,18 +44,23 @@ const PurchaseHouse = () => {
       toast.error("This house is not available for purchase.");
       return;
     }
+    console.log("Selected Location ID:", selectedLocation_id);
 
     try {
       const response = await createPurchase({
         user_id,
-        house_id: selectedHouse.house_id,
-        price: selectedHouse.price,
-        location_id: selectedLocation_id,
-        status: "Purchased",
-        booking_status: 'Pending'
-      });
+        property_type: "house",
+        property_id: selectedHouse.house_id,
+        total_amount: Number(selectedHouse.price),
+        location_id: Number(selectedLocation_id),
+        purchase_status: 'Pending',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }).unwrap();
 
-      if (response?.data?.msg === "purchase successful") {
+      console.log('Server response:', response);
+
+      if (response?.msg === "purchase created successfully") {
         toast.success("House purchased successfully!");
         navigate("/userDashboard/purchase");
       } else {
@@ -63,8 +68,16 @@ const PurchaseHouse = () => {
         toast.error("Failed to purchase the house.");
       }
     } catch (error) {
-      console.error('Error purchasing the house:', error);
-      toast.error("Failed to purchase the house.");
+      console.error("Error purchasing house:", error);
+      if (error && typeof error === 'object' && 'originalStatus' in error) {
+        if ((error as any).originalStatus === 400) {
+          toast.error('Bad request: ' + (error as any).data.error);
+        } else {
+          toast.error('Failed to purchase house.');
+        }
+      } else {
+        toast.error('An unexpected error occurred.');
+      }
     }
   }
 
@@ -135,7 +148,7 @@ const PurchaseHouse = () => {
                     </div>
                   </div>
                   <p className="text-gray-600">House Type: {house.type}</p>
-                  <p className="text-gray-600">Price: ${house.price}</p>
+                  <p className="text-gray-600">Price: {house.price}</p>
                   <p className="text-gray-600">Number of Rooms: {house.number_of_rooms}</p>
                   <p className="text-gray-600">Number of Bedrooms: {house.number_of_bedrooms}</p>
                   <p className="text-gray-600">Year Built: {house.year_built}</p>
@@ -162,8 +175,8 @@ const PurchaseHouse = () => {
             <h2 className="text-2xl font-semibold mb-4">Confirm Purchase</h2>
             <p><strong>House Type:</strong> {selectedHouse.type}</p>
             <p><strong>Number of Rooms:</strong> {selectedHouse.number_of_rooms}</p>
-            <p><strong>year built:</strong> {selectedHouse.year_built}</p>
-            <p><strong>Price:</strong> ${selectedHouse.price}</p>
+            <p><strong>Year Built:</strong> {selectedHouse.year_built}</p>
+            <p><strong>Price:</strong> {selectedHouse.price}</p>
             <div className="flex justify-end space-x-4 mt-4">
               <button onClick={() => setSelectedHouse(null)} className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 focus:outline-none">Cancel</button>
               <button onClick={handlePurchase} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none">Confirm Purchase</button>

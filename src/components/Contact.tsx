@@ -15,7 +15,7 @@ const Contact = () => {
             </div>
             <div className="sm:grid sm:place-items-center">
               <button className="inline-block font-semibold  hover:bg-gray-300 transition duration-500 py-2 px-6 bg-amber-300 text-white tracking-widest uppercase rounded-md" >
-               <Link to='/contactUs'>Contact Us</Link> 
+               <Link to='/contact-us'>Contact Us</Link> 
               </button>
             </div>
           </div>

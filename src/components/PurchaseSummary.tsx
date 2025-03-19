@@ -37,8 +37,8 @@ const PurchaseSummary: React.FC = () => {
           {
             label: 'Total Amount',
             data: data,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgb(255, 213, 79)',
+            borderColor: 'rgba(255, 213, 79, 1)',
             borderWidth: 1,
           },
         ],
@@ -58,8 +58,40 @@ const PurchaseSummary: React.FC = () => {
 
   return (
     <div className="chart-container">
-      <h2 className="text-xl mb-4">purchase Summary</h2>
-      {chartData ? <Bar data={chartData} /> : <div>No data available</div>}
+      <h2 className="text-xl mb-4">Purchase Summary</h2>
+      {chartData ? (
+        <Bar
+          data={chartData}
+          options={{
+            responsive: true,
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: 'Week Start Date',
+                },
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Total Amount',
+                },
+                ticks: {
+                  stepSize: 1,
+                  callback: function (value) {
+                    if (Number.isInteger(value)) {
+                      return value;
+                    }
+                  },
+                },
+              },
+            },
+          }}
+        />
+      ) : (
+        <div>No data available</div>
+      )}
     </div>
   );
 };

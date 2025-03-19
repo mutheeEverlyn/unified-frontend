@@ -9,6 +9,7 @@ export interface LoginResponse {
   user: {
     user_id: number;
     role: string;
+    contact_phone: string;
   };
   token: string;
 }

@@ -6,14 +6,6 @@ export interface TCustomerReview{
     rating:number;
     comment:string;
     created_at:string;
- user:{
-     address:string;
-    contact_phone:string;
-      created_at:string;
-      email:string;
-      full_name:string;
-      updated_at:string;
-      }
   }
 
 // Define the API slice

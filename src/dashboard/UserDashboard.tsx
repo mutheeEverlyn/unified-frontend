@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import hamburger from '../assets/icon-hamburger.svg';
 import close from '../assets/icon-close.svg';
 import UserPhoneDashboard from './UserPhoneDashboard';
-import { NavLink, Outlet,Link } from 'react-router-dom';
+import { NavLink, Outlet, Link } from 'react-router-dom';
 import { RiLogoutCircleLine } from "react-icons/ri";
 import Footer from '../components/Footer';
 import { FaUserCircle } from "react-icons/fa";
-import { LayoutDashboard, Car,TicketCheck,House,LandPlot,Star,MessageSquareCode} from 'lucide-react';
+import { LayoutDashboard, Car, TicketCheck, House, LandPlot, Star, MessageSquareCode } from 'lucide-react';
 import { useGetUserByIdQuery } from '../features/user_management/UsersApi';
 
 const UserDashboard: React.FC = () => {
@@ -61,50 +61,50 @@ const UserDashboard: React.FC = () => {
           </div>
           <ul>
             <li className="mb-2">
-              <NavLink to="" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
-                <LayoutDashboard className="text-white mr-2" />
+              <NavLink to="" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
+                <LayoutDashboard className="mr-2" />
                 Dashboard
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="purchase-vehicle" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
-                <Car className="text-white mr-2" />
-                purchase a Vehicle
+              <NavLink to="purchase-vehicle" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
+                <Car className="mr-2" />
+                Purchase a Vehicle
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="purchase-house" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
-                <House className="text-white mr-2" />
-                purchase a house
+              <NavLink to="purchase-house" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
+                <House className="mr-2" />
+                Purchase a House
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="purchase-land" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
-                <LandPlot className="text-white mr-2" />
-                purchase land
+              <NavLink to="purchase-land" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
+                <LandPlot className="mr-2" />
+                Purchase Land
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="purchase" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
-                <TicketCheck className="text-white mr-2" />
-                My purchases
+              <NavLink to="purchase" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
+                <TicketCheck className="mr-2" />
+                My Purchases
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="my-reviews" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`} >
-                <Star className="text-white mr-2" />
-                My reviews
+              <NavLink to="my-reviews" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
+                <Star className="mr-2" />
+                My Reviews
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="new-review" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
-                <MessageSquareCode className="text-white mr-2" />
-                New review
+              <NavLink to="new-review" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
+                <MessageSquareCode className="mr-2" />
+                New Review
               </NavLink>
             </li>
             <li className="mb-2">
-              <NavLink to="profile" className={({ isActive }) => `flex items-center text-white ${isActive ? 'text-amber-300' : ''}`}>
-                <FaUserCircle size={30} className="text-white mr-2" />
+              <NavLink to="profile" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
+                <FaUserCircle size={30} className="mr-2" />
                 My Profile
               </NavLink>
             </li>

@@ -45,17 +45,23 @@ const PurchaseVehicle = () => {
       return;
     }
 
+    console.log("Selected Location ID:", selectedLocation_id);
+
     try {
       const response = await createPurchase({
         user_id,
-        vehicle_id: selectedVehicle.vehicle_id,
-        price: selectedVehicle.price,
-        location_id: selectedLocation_id,
-        status: "Purchased",
-        booking_status: 'Pending'
-      });
+        property_type: "vehicle",
+        property_id: selectedVehicle.vehicle_id,
+        total_amount: Number(selectedVehicle.price), 
+        location_id: Number(selectedLocation_id), 
+        purchase_status: "pending",
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }).unwrap();
 
-      if (response?.data?.msg === "purchase successful") {
+      console.log('Server response:', response);
+
+      if (response?.msg === "purchase created successfully") {
         toast.success("Vehicle purchased successfully!");
         navigate("/userDashboard/purchase");
       } else {
@@ -63,7 +69,15 @@ const PurchaseVehicle = () => {
       }
     } catch (error) {
       console.error("Error purchasing vehicle:", error);
-      toast.error("Failed to purchase vehicle.");
+      if (error && typeof error === 'object' && 'originalStatus' in error) {
+        if ((error as any).originalStatus === 400) {
+          toast.error('Bad request: ' + (error as any).data.error);
+        } else {
+          toast.error('Failed to purchase vehicle.');
+        }
+      } else {
+        toast.error('An unexpected error occurred.');
+      }
     }
   };
 
@@ -89,13 +103,17 @@ const PurchaseVehicle = () => {
         }}
       />
       <div className="container">
-        <h1 className="text-3xl sm:text-4xl font-semibold font-serif mb-3">Available Vehicles</h1>
+        <h1 className="text-3xl sm:text-4xl font-semibold font-serif mb-3">Available Vehicles for sale</h1>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-700">Select Location</label>
           <select
             className="block w-full p-2 border border-gray-300 rounded-md shadow-sm"
             value={selectedLocation_id || ''}
-            onChange={(e) => setSelectedLocation_id(Number(e.target.value))}
+            onChange={(e) => {
+              const selectedId = Number(e.target.value);
+              console.log("Selected Location ID:", selectedId);
+              setSelectedLocation_id(selectedId);
+            }}
           >
             <option value="" disabled>Select a location</option>
             {locations?.map((location: Tlocation) => (
@@ -158,7 +176,7 @@ const PurchaseVehicle = () => {
           <div className="bg-white p-6 max-w-md rounded-lg">
             <h2 className="text-2xl font-semibold mb-4">Confirm Purchase</h2>
             <p><strong>Vehicle:</strong> {selectedVehicle.make} {selectedVehicle.model}</p>
-            <p><strong>Price:</strong> ${selectedVehicle.price}</p>
+            <p><strong>Price:</strong> {selectedVehicle.price}</p>
             <div className="flex justify-end space-x-4 mt-4">
               <button onClick={() => setSelectedVehicle(null)} className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 focus:outline-none">Cancel</button>
               <button onClick={handlePurchase} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none">Confirm Purchase</button>

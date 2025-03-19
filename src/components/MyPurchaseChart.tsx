@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useGetPurchaseQuery, TPurchase } from '../features/purchase/PurchaseApi';
-import { Chart, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Chart, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
+import { Line } from 'react-chartjs-2';
 import { format, startOfWeek, parseISO } from 'date-fns';
 
 // Register the Chart.js components
-Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+Chart.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
 interface MyPurchaseChartProps {
   user_id: number;
@@ -42,9 +42,10 @@ const MyPurchaseChart: React.FC<MyPurchaseChartProps> = ({ user_id }) => {
           {
             label: 'Total Amount',
             data: data,
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(255, 213, 79, 0.2)',
+            borderColor: 'rgba(255, 213, 79, 1)',
             borderWidth: 1,
+            fill: true,
           },
         ],
       };
@@ -58,8 +59,32 @@ const MyPurchaseChart: React.FC<MyPurchaseChartProps> = ({ user_id }) => {
 
   return (
     <div className="chart-container">
-      <h2>purchase Summary</h2>
-      {chartData ? <Bar data={chartData} options={{ responsive: true, scales: { y: { beginAtZero: true } } }} /> : <div>No data available</div>}
+      <h2>Purchase Summary</h2>
+      {chartData ? (
+        <Line
+          data={chartData}
+          options={{
+            responsive: true,
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: 'Week Start Date',
+                },
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Total Amount',
+                },
+              },
+            },
+          }}
+        />
+      ) : (
+        <div>No data available</div>
+      )}
     </div>
   );
 };

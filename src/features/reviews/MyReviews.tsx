@@ -60,15 +60,15 @@ const MyReviews: React.FC = () => {
           },
         }}
       />
-      <div className="overflow-x-auto bg-gray-800 text-white rounded-lg p-4 min-h-screen">
+      <div className="overflow-x-auto bg-gray-400 text-white rounded-lg p-4 min-h-screen">
         <h1 className="text-xl my-4">My reviews</h1>
-        <table className="table table-xs">
+        <table className="table-auto border-collapse w-full bg-gray-400 text-white border border-white">
           <thead>
             <tr>
-              <th className="text-white">rating</th>
-              <th className="text-white">comment</th>
-              <th className="text-white">created_at</th>
-              <th className="text-white">Options</th>
+              <th className="text-white border-white px-4 py-2">rating</th>
+              <th className="text-white border-white px-4 py-2">comment</th>
+              <th className="text-white border-white px-4 py-2">created_at</th>
+              <th className="text-white border-white px-4 py-2">Options</th>
             </tr>
           </thead>
           <tbody>
@@ -83,7 +83,7 @@ const MyReviews: React.FC = () => {
             ) : (
               Myreviews?.map((review: TReview) => (
                 <tr key={review.review_id}>
-                  <td>
+                  <td className="border border-white px-4 py-2">
                     {ediTReviewId === review.review_id ? (
                       <input
                         name="rating"
@@ -95,7 +95,7 @@ const MyReviews: React.FC = () => {
                       review.rating
                     )}
                   </td>
-                  <td>
+                  <td className="border border-white px-4 py-2">
                     {ediTReviewId === review.review_id ? (
                       <textarea
                         name="comment"
@@ -108,18 +108,18 @@ const MyReviews: React.FC = () => {
                     )}
                   </td>
                  
-                  <td>{review.created_at}</td>
-                  <td className="flex gap-2">
+                  <td className='border border-white px-4 py-2'>{review.created_at}</td>
+                  <td className='border border-white px-4 py-2'>
                     {ediTReviewId === review.review_id ? (
                       <>
                         <button
-                          className="btn btn-sm btn-outline btn-success"
+                          className="bg-green-400 text-white px-2 py-1 my-1 rounded-b-md"
                           onClick={() => handleUpdate(review.review_id)}
                         >
                           Save
                         </button>
                         <button
-                          className="btn btn-sm btn-outline btn-warning"
+                          className="bg-red-600 text-white px-2 py-0.5 rounded-b-md"
                           onClick={() => setEdiTReviewId(null)}
                         >
                           Cancel
@@ -127,7 +127,7 @@ const MyReviews: React.FC = () => {
                       </>
                     ) : (
                       <button
-                        className="btn btn-sm btn-outline btn-info"
+                        className="bg-green-400 text-white px-2 py-1 mr-2 rounded-b-md"
                         onClick={() => handleEdit(review)}
                       >
                         Edit

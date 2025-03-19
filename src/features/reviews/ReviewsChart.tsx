@@ -32,8 +32,8 @@ const ReviewsChart: React.FC<reviewsChartProps> = ({ user_id }) => {
           {
             label: 'Number of reviews',
             data: Object.values(statusCounts),
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgb(255, 213, 79)',
+            borderColor: 'rgb(189, 189, 189)',
             borderWidth: 1,
           },
         ],
@@ -53,8 +53,26 @@ const ReviewsChart: React.FC<reviewsChartProps> = ({ user_id }) => {
         options: {
           responsive: true,
           scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Ratings',
+              },
+            },
             y: {
               beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Number of Reviews',
+              },
+              ticks: {
+                stepSize: 1,
+                callback: function (value) {
+                  if (Number.isInteger(value)) {
+                    return value;
+                  }
+                },
+              },
             },
           },
         } as ChartOptions<'bar'>,
@@ -77,7 +95,7 @@ const ReviewsChart: React.FC<reviewsChartProps> = ({ user_id }) => {
 
   return (
     <div className="chart-container">
-      <h2>reviews Overview</h2>
+      <h2>Reviews Overview</h2>
       <canvas ref={chartRef}></canvas>
     </div>
   );

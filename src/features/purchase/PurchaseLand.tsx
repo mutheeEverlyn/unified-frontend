@@ -1,4 +1,4 @@
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { Toaster, toast } from "sonner";
 import { useNavigate } from 'react-router-dom';
 import { useGetLandQuery, TLand } from "./LandApi";
@@ -20,11 +20,12 @@ const PurchaseLand = () => {
   const user_id = userDetails?.user_id;
 
   useEffect(() => {
-      console.log("Vehicle Data:", lands);
-      if (error) {
-        console.log("Vehicle Fetch Error:", error);
-      }
-    }, [lands, error]);
+    console.log("Land Data:", lands);
+    if (error) {
+      console.log("Land Fetch Error:", error);
+    }
+  }, [lands, error]);
+
   const handlePurchase = async () => {
     if (!selectedLocation_id) {
       toast.error("Please select a location.");
@@ -39,7 +40,7 @@ const PurchaseLand = () => {
       return;
     }
 
-    if (selectedLand.status !=='available') {
+    if (selectedLand.status !== 'available') {
       toast.error("The land is not available for purchase.");
       return;
     }
@@ -47,32 +48,40 @@ const PurchaseLand = () => {
     try {
       const response = await createPurchase({
         user_id,
-        land_id: selectedLand.land_id,
-        location_id: selectedLocation_id,
-        price: selectedLand.price,
-        status: 'Pending'
-      });
-      if (response?.data?.msg === 'purchase created successfully') {
+        property_type: 'land',
+        property_id: selectedLand.land_id,
+        location_id: Number(selectedLocation_id),
+        total_amount: Number(selectedLand.price),
+        purchase_status: 'Pending',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }).unwrap();
+      console.log('Server response:', response);
+
+      if (response?.msg === 'purchase created successfully') {
         toast.success("Land purchased successfully!");
-        navigate('/userDashboard/purchase');
+        navigate("/userDashboard/purchase");
       } else {
         console.error('Error purchasing the land:', response?.error);
         toast.error("Failed to purchase the land.");
       }
     } catch (error) {
-      console.error('Error booking the land:', error);
-      toast.error("Failed to book the land.");
+      console.error("Error purchasing land:", error);
+      if (error && typeof error === 'object' && 'originalStatus' in error) {
+        if ((error as any).originalStatus === 400) {
+          toast.error('Bad request: ' + (error as any).data.error);
+        } else {
+          toast.error('Failed to purchase land.');
+        }
+      } else {
+        toast.error('An unexpected error occurred.');
+      }
     }
   };
 
   const handleShowDetails = debounce((landId: number) => {
     setShowDetails(prev => (prev === landId ? null : landId));
-  },300);
-
-  // const handleCloseDetails = () => {
-  //   setShowDetails(null);
-  // };
-
+  }, 300);
 
   if (isLoading || isLocationsLoading) return <p>Loading...</p>;
   if (error || locationsError) return <p>Error loading data.</p>;
@@ -123,15 +132,15 @@ const PurchaseLand = () => {
                   <p className="text-gray-600">Land Type: {land.land_type}</p>
                   <p className="text-gray-600">Size: {land.size}</p>
                   <p className="text-gray-600">Location: {land.location_id}</p>
-                  <p className="text-gray-600">Price: ${land.price}</p>
+                  <p className="text-gray-600">Price: {land.price}</p>
                 </div>
               )}
               {land.status === 'available' ? (
                 <button onClick={() => setSelectedLand(land)} className="bg-blue-600 text-white px-4 py-2 mt-4 w-full rounded-md hover:bg-blue-700 focus:outline-none">
                   Purchase  
                 </button>
-              ):(<p className="text-red-500 mt-2">Not Available</p>
-
+              ) : (
+                <p className="text-red-500 mt-2">Not Available</p>
               )}
             </div>
           ))}
@@ -144,10 +153,10 @@ const PurchaseLand = () => {
             <p><strong>Land Type:</strong> {selectedLand.land_type}</p>
             <p><strong>Size:</strong> {selectedLand.size}</p>
             <p><strong>Location:</strong> {selectedLand.location_id}</p>
-            <p><strong>Price:</strong> ${selectedLand.price}</p>
+            <p><strong>Price:</strong> {selectedLand.price}</p>
             <div className="flex justify-end space-x-4 mt-4">
-              <button onClick={()=>setSelectedLand(null)} className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 focus:outline-none">cancel</button>
-              <button onClick={handlePurchase} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none">confirm purchase</button>
+              <button onClick={() => setSelectedLand(null)} className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 focus:outline-none">Cancel</button>
+              <button onClick={handlePurchase} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none">Confirm Purchase</button>
             </div>
           </div>
         </div>
