@@ -105,6 +105,10 @@ const App:React.FC=()=> {
          path: 'purchase-vehicle',
          element: <PurchaseVehicle />
         },
+        {
+          path: 'purchase',
+          element: <Purchase />
+        },
       ],
     },
     {
