@@ -5,7 +5,7 @@ import { useState } from 'react';
 import AdminPhoneDashboard from "./AdminPhoneDashboard";
 import { NavLink, Outlet, Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { CircleDollarSign, LayoutDashboard, CarFront, LandPlot, House, UserRoundCog, MapPin, TicketCheck,ShoppingCart } from 'lucide-react';
+import { CircleDollarSign, LayoutDashboard, CarFront, LandPlot, House, UserRoundCog, MapPin, TicketCheck} from 'lucide-react';
 import { MdAdminPanelSettings } from "react-icons/md";
 import { useGetUserByIdQuery } from '../features/user_management/UsersApi';
 
@@ -130,12 +130,12 @@ const AdminDashboard = () => {
                 Payments
               </NavLink>
             </li>
-            <li className="mb-2">
+            {/* <li className="mb-2">
               <NavLink to="purchase" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
                 <ShoppingCart className="mr-2" />
                 Purchase
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="w-full md:w-3/4 p-4">
