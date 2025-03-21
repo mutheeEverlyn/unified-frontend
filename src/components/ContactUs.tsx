@@ -58,7 +58,7 @@ const ContactUs: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 mx-auto w-2/3 my-10 border-blue-400 rounded-md border-2 p-10">
           <label htmlFor="full_name">Full Name</label>
           {errors.full_name && <p className='text-red-600'>{errors.full_name.message}</p>}
-          <input type="text" placeholder="John Doe" className="border-2 border-black rounded-md p-2" {...register("full_name", { required: "Full name is required" })} />
+          <input type="text" placeholder="Everlyn Muthoni" className="border-2 border-black rounded-md p-2" {...register("full_name", { required: "Full name is required" })} />
 
           <label htmlFor="email">Email</label>
           {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
