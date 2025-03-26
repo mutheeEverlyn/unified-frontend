@@ -130,12 +130,6 @@ const AdminDashboard = () => {
                 Payments
               </NavLink>
             </li>
-            {/* <li className="mb-2">
-              <NavLink to="purchase" className={({ isActive }) => `flex items-center ${isActive ? 'text-amber-300' : 'text-white'}`}>
-                <ShoppingCart className="mr-2" />
-                Purchase
-              </NavLink>
-            </li> */}
           </ul>
         </div>
         <div className="w-full md:w-3/4 p-4">
