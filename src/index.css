@@ -11,7 +11,7 @@
     width: 0ch;
   }
   50% {
-    width: 20ch;
+    width: 24ch;
   }
   100% {
     width: 0ch;
@@ -29,5 +29,5 @@
   overflow: hidden;
   white-space: nowrap;
   border-right: 2px solid white;
-  animation: typing 6s steps(20, end) infinite, blink 0.5s step-end infinite;
+  animation: typing 6s steps(24, end) infinite, blink 0.5s step-end infinite;
 }
