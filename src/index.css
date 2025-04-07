@@ -31,3 +31,9 @@
   border-right: 2px solid white;
   animation: typing 6s steps(25, end) infinite, blink 0.5s step-end infinite;
 }
+@media only screen and (max-width: 640px) { 
+  .animate-typing {
+    font-size: 1.5rem; 
+    padding-top: 1rem;
+  }
+}
