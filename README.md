@@ -7,3 +7,11 @@
   -i used bcrypt for password encryption and jwt for tokenization
   
   -for the backend i used drizzle,hono and postgresql for my database.
+
+
+
+
+
+
+
+
