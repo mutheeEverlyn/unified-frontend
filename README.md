@@ -1,4 +1,4 @@
-  -unified frontend is a a website that unifies three properties such as land,houses and vehicles
+ⓞ  -unified frontend is a a website that unifies three properties such as land,houses and vehicles
   
   -its build using react,redux toolkit query ,sonner for notifications
   
@@ -7,6 +7,15 @@
   -i used bcrypt for password encryption and jwt for tokenization
   
   -for the backend i used drizzle,hono and postgresql for my database.
+
+
+
+
+
+
+
+
+
 
 
 
